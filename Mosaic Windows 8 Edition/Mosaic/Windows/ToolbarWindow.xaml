@@ -1,0 +1,36 @@
+﻿<Window x:Class="Mosaic.Windows.ToolbarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Mosaic.Controls" xmlns:Properties="clr-namespace:Mosaic.Properties" x:Name="this"
+        Width="120" AllowsTransparency="True" Background="Black" Topmost="True" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
+        Loaded="WindowLoaded" MouseLeave="ToolbarMouseLeave" MouseLeftButtonUp="WindowMouseLeftButtonUp" PreviewKeyDown="WindowPreviewKeyDown">
+    <Window.Resources>
+        <Storyboard x:Key="ToolbarOpenAnim" BeginTime="0:0:0.05">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Width" To="120" Duration="0:0:0.2"/>-->
+        </Storyboard>
+        <Storyboard x:Key="ToolbarCloseAnim" BeginTime="0:0:0.3" Completed="ToolbarCloseAnimCompleted">
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="0.01" Duration="0:0:0.4" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Width" To="1" Duration="0:0:0.3" AccelerationRatio="0.5" DecelerationRatio="0.3"/>-->
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Name="Toolbar" VerticalAlignment="Center">
+            <Controls:ToolbarItem x:Name="WidgetsButton" Icon="/Resources/widgets_icon.png" Title="{x:Static Properties:Resources.WidgetsItem}" MouseLeftButtonUp="WidgetsButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="PinWebButton" Icon="/Resources/pin_icon.png" Title="{x:Static Properties:Resources.PinWebItem}" MouseLeftButtonUp="PinWebButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="PinAppButton" Icon="/Resources/pin_icon.png" Title="{x:Static Properties:Resources.PinAppItem}" MouseLeftButtonUp="PinAppButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="PeopleButton" Icon="/Resources/people_icon.png" Title="{x:Static Properties:Resources.PeopleItem}" MouseLeftButtonUp="PeopleButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="SettingsButton" Icon="/Resources/settings_icon.png" Title="{x:Static Properties:Resources.OptionsItem}" MouseLeftButtonUp="SettingsButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="ExitButton" Icon="/Resources/exit_icon.png" Title="{x:Static Properties:Resources.ExitItem}" MouseLeftButtonUp="ExitButtonMouseLeftButtonUp"/>
+        </StackPanel>
+        <Grid Name="WidgetsListGrid" Background="Black" Visibility="Collapsed">
+            <Controls:ToolbarItem x:Name="BackButton" VerticalAlignment="Top" Icon="/Resources/back_icon.png" Title="{x:Static Properties:Resources.BackItem}" MouseLeftButtonUp="BackButtonMouseLeftButtonUp"/>
+            <Controls:DragScrollViewer Margin="0,100,0,0" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" DragEverywhere="True">
+                <StackPanel Name="WidgetsList" VerticalAlignment="Center">
+
+                </StackPanel>
+            </Controls:DragScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

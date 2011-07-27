@@ -1,0 +1,9 @@
+﻿<Window x:Class="Mosaic.Base.HubWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" ResizeMode="NoResize" Left="0" Top="0" ShowInTaskbar="False" 
+        SourceInitialized="WindowSourceInitialized" KeyUp="WindowKeyUp">
+    <Grid>
+
+    </Grid>
+</Window>
