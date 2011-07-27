@@ -31,11 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Social.Base", "Social.Base\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "People", "Widgets\People\People.csproj", "{B76F97DB-264C-4848-9290-4B97D6A9EF63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music", "Widgets\Music\Music.csproj", "{336A6B61-9345-4197-AC22-A1421242C455}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 16
+		SccNumberOfProjects = 15
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs30
 		SccLocalPath0 = .
@@ -71,30 +69,26 @@ Global
 		SccProjectTopLevelParentUniqueName9 = Mosaic.sln
 		SccProjectName9 = Widgets/Me
 		SccLocalPath9 = Widgets\\Me
-		SccProjectUniqueName10 = Widgets\\Music\\Music.csproj
+		SccProjectUniqueName10 = Widgets\\People\\People.csproj
 		SccProjectTopLevelParentUniqueName10 = Mosaic.sln
-		SccProjectName10 = Widgets/Music
-		SccLocalPath10 = Widgets\\Music
-		SccProjectUniqueName11 = Widgets\\People\\People.csproj
+		SccProjectName10 = Widgets/People
+		SccLocalPath10 = Widgets\\People
+		SccProjectUniqueName11 = Widgets\\Pictures\\Pictures.csproj
 		SccProjectTopLevelParentUniqueName11 = Mosaic.sln
-		SccProjectName11 = Widgets/People
-		SccLocalPath11 = Widgets\\People
-		SccProjectUniqueName12 = Widgets\\Pictures\\Pictures.csproj
+		SccProjectName11 = Widgets/Pictures
+		SccLocalPath11 = Widgets\\Pictures
+		SccProjectUniqueName12 = Widgets\\Twitter\\Twitter.csproj
 		SccProjectTopLevelParentUniqueName12 = Mosaic.sln
-		SccProjectName12 = Widgets/Pictures
-		SccLocalPath12 = Widgets\\Pictures
-		SccProjectUniqueName13 = Widgets\\Twitter\\Twitter.csproj
+		SccProjectName12 = Widgets/Twitter
+		SccLocalPath12 = Widgets\\Twitter
+		SccProjectUniqueName13 = Widgets\\Video\\Video.csproj
 		SccProjectTopLevelParentUniqueName13 = Mosaic.sln
-		SccProjectName13 = Widgets/Twitter
-		SccLocalPath13 = Widgets\\Twitter
-		SccProjectUniqueName14 = Widgets\\Video\\Video.csproj
+		SccProjectName13 = Widgets/Video
+		SccLocalPath13 = Widgets\\Video
+		SccProjectUniqueName14 = Widgets\\Weather\\Weather.csproj
 		SccProjectTopLevelParentUniqueName14 = Mosaic.sln
-		SccProjectName14 = Widgets/Video
-		SccLocalPath14 = Widgets\\Video
-		SccProjectUniqueName15 = Widgets\\Weather\\Weather.csproj
-		SccProjectTopLevelParentUniqueName15 = Mosaic.sln
-		SccProjectName15 = Widgets/Weather
-		SccLocalPath15 = Widgets\\Weather
+		SccProjectName14 = Widgets/Weather
+		SccLocalPath14 = Widgets\\Weather
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -245,16 +239,6 @@ Global
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63}.Release|x86.ActiveCfg = Release|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Release|Any CPU.Build.0 = Release|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{336A6B61-9345-4197-AC22-A1421242C455}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -270,6 +254,5 @@ Global
 		{1670225C-BAA3-49AC-A8D6-44D75A973B31} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
 		{A03D7F01-93CE-4955-B004-F66C0786BD26} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
-		{336A6B61-9345-4197-AC22-A1421242C455} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
 	EndGlobalSection
 EndGlobal

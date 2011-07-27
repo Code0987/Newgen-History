@@ -209,6 +209,7 @@
     <Content Include="AppIcons\opera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\start_icon.png" />
     <Resource Include="Resources\mosaic_logo.png" />
     <Resource Include="icon.ico" />
     <Resource Include="Resources\comments_icon.png" />
