@@ -313,6 +313,15 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Config.
+        /// </summary>
+        public static string SaveItem {
+            get {
+                return ResourceManager.GetString("SaveItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to what&apos;s new?.
         /// </summary>
         public static string WhatsNew {

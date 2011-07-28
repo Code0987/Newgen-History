@@ -40,15 +40,15 @@ namespace Video
             Title.Text = System.IO.Path.GetFileNameWithoutExtension(file);
             ThreadStart threadStarter = delegate
                                             {
-                                                //var shellFile = ShellFile.FromFilePath(file);
-                                                //this.Dispatcher.Invoke(DispatcherPriority.Background, (Action)delegate
-                                                //{
-                                                //    ThumbnailImage.Source = shellFile.Thumbnail.BitmapSource;
-                                                //    /*if (!string.IsNullOrEmpty(shellFile.Properties.System.Title.Value))
-                                                //        Title.Text = shellFile.Properties.System.Title.Value;
-                                                //    Duration.Text = shellFile.Properties.System.Media.Duration.FormatForDisplay(PropertyDescriptionFormatOptions.ShortTime);*/
-                                                //});
-                                                //shellFile.Dispose();
+                                                var shellFile = ShellFile.FromFilePath(file);
+                                                this.Dispatcher.Invoke(DispatcherPriority.Background, (Action)delegate
+                                                {
+                                                    ThumbnailImage.Source = shellFile.Thumbnail.BitmapSource;
+                                                    /*if (!string.IsNullOrEmpty(shellFile.Properties.System.Title.Value))
+                                                        Title.Text = shellFile.Properties.System.Title.Value;
+                                                    Duration.Text = shellFile.Properties.System.Media.Duration.FormatForDisplay(PropertyDescriptionFormatOptions.ShortTime);*/
+                                                });
+                                                shellFile.Dispose();
                                             };
             var thread = new Thread(threadStarter);
             thread.Start();

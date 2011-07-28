@@ -49,8 +49,6 @@ namespace Video
                 lib.Dispose();
             }
 
-            categories.OrderBy(x => x.Title);
-
             foreach (var category in categories)
             {
                 var control = new VideoCategoryControl();

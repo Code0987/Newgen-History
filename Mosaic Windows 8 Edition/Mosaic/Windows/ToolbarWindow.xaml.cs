@@ -17,6 +17,24 @@ using Microsoft.Win32;
 using Mosaic.Base;
 using Mosaic.Controls;
 using Mosaic.Core;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using Mosaic.Base;
 
 namespace Mosaic.Windows
 {
@@ -175,7 +193,18 @@ namespace Mosaic.Windows
             isOpened = false;
 
         }
+        private void SaveButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            {
+                foreach (Window window in App.Current.Windows)
+                {
+                    window.Close();
+                }
 
+                Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
+            }
+        }
         private void ExitButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Application.Current.MainWindow.Close();

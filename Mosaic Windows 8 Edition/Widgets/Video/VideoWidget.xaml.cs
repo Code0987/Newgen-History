@@ -30,43 +30,31 @@ namespace Video
 
         private void UserControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //hub temporary disabled because of bad performance
-            if (Environment.OSVersion.Version.Major < 6 && Environment.OSVersion.Version.Minor < 1)
+            /*var file = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Libraries\\Videos.library-ms";
+            WinAPI.ShellExecute(IntPtr.Zero, "open", file, null, null, 1);*/
+            if (hub != null && hub.IsVisible)
             {
-                var path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
-                WinAPI.ShellExecute(IntPtr.Zero, "open", path, null, null, 3);
+                hub.Activate();
                 return;
+            }
+
+            hub = new HubWindow();
+            //hub.Topmost = true;
+            hub.AllowsTransparency = true;
+            hubContent = new Hub();
+            hub.Content = hubContent;
+            hubContent.Close += HubContentClose;
+
+            if (E.Language == "he-IL" || E.Language == "ar-SA")
+            {
+                hub.FlowDirection = System.Windows.FlowDirection.RightToLeft;
             }
             else
             {
-                var file = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Libraries\\Videos.library-ms";
-                WinAPI.ShellExecute(IntPtr.Zero, "open", file, null, null, 3);
-                return;
+                hub.FlowDirection = System.Windows.FlowDirection.LeftToRight;
             }
 
-            //if (hub != null && hub.IsVisible)
-            //{
-            //    hub.Activate();
-            //    return;
-            //}
-
-            //hub = new HubWindow();
-            ////hub.Topmost = true;
-            //hub.AllowsTransparency = true;
-            //hubContent = new Hub();
-            //hub.Content = hubContent;
-            //hubContent.Close += HubContentClose;
-
-            //if (E.Language == "he-IL" || E.Language == "ar-SA")
-            //{
-            //    hub.FlowDirection = System.Windows.FlowDirection.RightToLeft;
-            //}
-            //else
-            //{
-            //    hub.FlowDirection = System.Windows.FlowDirection.LeftToRight;
-            //}
-
-            //hub.ShowDialog();
+            hub.ShowDialog();
         }
 
         void HubContentClose(object sender, EventArgs e)
