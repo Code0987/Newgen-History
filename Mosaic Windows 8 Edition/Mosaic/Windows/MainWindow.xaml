@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Properties="clr-namespace:Mosaic.Properties" xmlns:Core="clr-namespace:Mosaic.Controls" Title="MainWindow" Height="300" Width="300"
         WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False" 
         SourceInitialized="WindowSourceInitialized"  Loaded="WindowLoaded" Closing="WindowClosing" MouseLeftButtonUp="WindowMouseLeftButtonUp">
-    <Core:DragScrollViewer x:Name="DragScroll" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden" DragEverywhere="True">
+    <Core:DragScrollViewer x:Name="DragScroll" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden">
         <Grid>
             <Grid Name="WidgetHost" ShowGridLines="False"/>
             <Canvas Name="DragCanvas"/>

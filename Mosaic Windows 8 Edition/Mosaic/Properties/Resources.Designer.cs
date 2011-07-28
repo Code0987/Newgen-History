@@ -322,6 +322,15 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string StartItem {
+            get {
+                return ResourceManager.GetString("StartItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to what&apos;s new?.
         /// </summary>
         public static string WhatsNew {

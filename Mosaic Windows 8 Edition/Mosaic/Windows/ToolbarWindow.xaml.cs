@@ -17,24 +17,10 @@ using Microsoft.Win32;
 using Mosaic.Base;
 using Mosaic.Controls;
 using Mosaic.Core;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Mosaic.Base;
 
 namespace Mosaic.Windows
 {
@@ -164,13 +150,6 @@ namespace Mosaic.Windows
                 Open();
             }
 
-            foreach (var window in App.Current.Windows)
-            {
-                if (window.GetType() == typeof(HubWindow))
-                    continue;
-                ((Window)window).Activate();
-                ((Window)window).Show();
-            }
         }
 
         public void Open()
@@ -214,6 +193,16 @@ namespace Mosaic.Windows
         {
             App.ShowOptions();
         }
+        private void StartButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (var window in App.Current.Windows)
+            {
+                if (window.GetType() == typeof(HubWindow))
+                    continue;
+                ((Window)window).Activate();
+                ((Window)window).Show();
+            }
+        }
 
         private void WidgetsButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -233,6 +222,9 @@ namespace Mosaic.Windows
                 item.MouseLeftButtonUp += ItemMouseLeftButtonUp;
                 WidgetsList.Children.Add(item);
             }
+
+            
+
         }
 
         private double mouseX, mouseY;

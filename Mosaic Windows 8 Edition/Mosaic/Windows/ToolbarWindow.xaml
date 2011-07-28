@@ -17,13 +17,12 @@
     </Window.Resources>
     <Grid>
         <StackPanel Name="Toolbar" VerticalAlignment="Center">
-          
+            <Controls:ToolbarItem x:Name="WidgetsButton" Icon="/Resources/widgets_icon.png" Title="{x:Static Properties:Resources.WidgetsItem}" MouseLeftButtonUp="WidgetsButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="PinWebButton" Icon="/Resources/pinweb_icon.png" Title="{x:Static Properties:Resources.PinWebItem}" MouseLeftButtonUp="PinWebButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="PinAppButton" Icon="/Resources/pin_icon.png" Title="{x:Static Properties:Resources.PinAppItem}" MouseLeftButtonUp="PinAppButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="StartButton" Icon="/Resources/start_icon.png" Title="{x:Static Properties:Resources.StartItem}" MouseLeftButtonUp="StartButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="PeopleButton" Icon="/Resources/people_icon.png" Title="{x:Static Properties:Resources.PeopleItem}" MouseLeftButtonUp="PeopleButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="WidgetsButton" Icon="/Resources/start_icon.png" Title="{x:Static Properties:Resources.WidgetsItem}" MouseLeftButtonUp="WidgetsButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="SettingsButton" Icon="/Resources/settings_icon.png" Title="{x:Static Properties:Resources.OptionsItem}" MouseLeftButtonUp="SettingsButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="SaveButton" Icon="/Resources/save_icon.png" Title="{x:Static Properties:Resources.SaveItem}" MouseLeftButtonUp="SaveButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="ExitButton" Icon="/Resources/exit_icon.png" Title="{x:Static Properties:Resources.ExitItem}" MouseLeftButtonUp="ExitButtonMouseLeftButtonUp"/>
            
         </StackPanel>
