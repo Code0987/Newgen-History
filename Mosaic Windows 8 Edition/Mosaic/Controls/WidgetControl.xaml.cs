@@ -85,28 +85,28 @@ namespace Mosaic.Controls
             }
             else
             {*/
-                var s = Resources["LoadAnim"] as Storyboard;
-                s.Begin();
+            var s = Resources["LoadAnim"] as Storyboard;
+            s.Begin();
 
-                if (WidgetProxy.WidgetType == WidgetType.Generated)
+            if (WidgetProxy.WidgetType == WidgetType.Generated)
+            {
+                contextMenu = new ContextMenu();
+
+                if (!string.IsNullOrEmpty(WidgetProxy.Path) && WidgetProxy.Path.StartsWith("http://"))
                 {
-                    contextMenu = new ContextMenu();
-
-                    if (!string.IsNullOrEmpty(WidgetProxy.Path) && WidgetProxy.Path.StartsWith("http://"))
-                    {
-                        refreshItem = new MenuItem();
-                        refreshItem.Header = Properties.Resources.RefreshItem;
-                        refreshItem.Click += RefreshItemClick;
-                        contextMenu.Items.Add(refreshItem);
-                    }
-
-                    removeItem = new MenuItem();
-                    removeItem.Header = Properties.Resources.RemoveItem;
-                    removeItem.Click += RemoveItemClick;
-
-                    contextMenu.Items.Add(removeItem);
-                    this.ContextMenu = contextMenu;
+                    refreshItem = new MenuItem();
+                    refreshItem.Header = Properties.Resources.RefreshItem;
+                    refreshItem.Click += RefreshItemClick;
+                    contextMenu.Items.Add(refreshItem);
                 }
+
+                removeItem = new MenuItem();
+                removeItem.Header = Properties.Resources.RemoveItem;
+                removeItem.Click += RemoveItemClick;
+
+                contextMenu.Items.Add(removeItem);
+                this.ContextMenu = contextMenu;
+            }
             //}
         }
 
@@ -157,7 +157,7 @@ namespace Mosaic.Controls
             Opacity = 1;
         }
 
-       private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var s = Resources["MouseDownAnim"] as Storyboard;
             s.Begin();
@@ -172,7 +172,7 @@ namespace Mosaic.Controls
             var s = Resources["MouseUpAnim"] as Storyboard;
             s.Begin();
             MousePressed = false;
-        } 
+        }
 
         private void UserControlMouseLeave(object sender, MouseEventArgs e)
         {

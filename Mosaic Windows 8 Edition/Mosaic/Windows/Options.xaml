@@ -42,16 +42,16 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontSize="24" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsAbout}" Margin="0,0,0,0" Foreground="{StaticResource OptionsBigHeaderColor}"/>
                             <Separator/>
-                            <TextBlock Text="Mosaic Project"  Margin="0,7,0,0"/>
+                            <TextBlock Text="Mosaic Windows 8 Edition"  Margin="0,7,0,0" Foreground="White" />
                             <TextBlock>
                                     <Run Text="{x:Static Properties:Resources.OptionsVersion}"/> 
                                     <Run Name="BuildTag" Text="1.0.0.0"/>
                             </TextBlock>
-                            <TextBlock Text="Copyright © Stealth 2011"/>
+                            <TextBlock Text="Copyright © Stealth, maximzuriel 2011" Foreground="White" />
                             <TextBlock Text="{x:Static Properties:Resources.OptionsCopyright}" TextWrapping="Wrap"/>
                             <TextBlock Text="{x:Static Properties:Resources.OptionsAboutAwesomium}" TextWrapping="Wrap"/>
-                            <TextBlock Text="{x:Static Properties:Resources.OptionsAboutIcons}" TextWrapping="Wrap"/>
-                            <TextBlock Name="SiteLink" TextWrapping="Wrap" Text="http://mosaicproject.codeplex.com" HorizontalAlignment="Left" MouseLeftButtonUp="SiteLinkMouseLeftButtonUp">
+                            <TextBlock Text="Some icons provided by The Noun Project and the Microsoft Windows Phone Emulator." TextWrapping="Wrap" Foreground="White" />
+                            <TextBlock Name="SiteLink" TextWrapping="Wrap" Text="http://mosaicwin8.codeplex.com" HorizontalAlignment="Left" MouseLeftButtonUp="SiteLinkMouseLeftButtonUp">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
                                            <Setter Property="Cursor" Value="Hand"/>

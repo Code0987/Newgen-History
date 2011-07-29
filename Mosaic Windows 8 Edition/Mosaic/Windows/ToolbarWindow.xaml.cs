@@ -32,6 +32,7 @@ namespace Mosaic.Windows
         //private readonly int totalWorkingAreaWidth = 0;
         private bool isOpened;
         public ToolbarWindow()
+       
         {
             if (!App.Settings.IsExclusiveMode)
             {
@@ -159,7 +160,10 @@ namespace Mosaic.Windows
             //((DoubleAnimation)s.Children[0]).To = totalWorkingAreaWidth - 120;
 
             s.Begin();
+          
             isOpened = true;
+           
+            
         }
 
         public void CloseToolbar()
@@ -169,21 +173,12 @@ namespace Mosaic.Windows
             //((DoubleAnimation)s.Children[0]).To = totalWorkingAreaWidth - 1;
 
             s.Begin();
+
+          
             isOpened = false;
 
         }
-        private void SaveButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            {
-                foreach (Window window in App.Current.Windows)
-                {
-                    window.Close();
-                }
-
-                Process.Start(Application.ResourceAssembly.Location);
-                Application.Current.Shutdown();
-            }
-        }
+       
         private void ExitButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Application.Current.MainWindow.Close();

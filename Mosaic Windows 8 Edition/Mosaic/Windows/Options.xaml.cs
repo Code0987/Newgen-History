@@ -112,7 +112,7 @@ namespace Mosaic.Windows
 
         private void SiteLinkMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            WinAPI.ShellExecute(IntPtr.Zero, "open", "http://mosaicproject.codeplex.com", string.Empty, string.Empty, 0);
+            WinAPI.ShellExecute(IntPtr.Zero, "open", "http://mosaicwin8.codeplex.com", string.Empty, string.Empty, 0);
         }
 
         private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)

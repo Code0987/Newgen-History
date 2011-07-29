@@ -20,7 +20,6 @@ namespace Mosaic.Windows
         private ToolbarWindow toolbar;
         private ThumbnailsBar thumbBar;
         private BottomToolbar bottomToolbar;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +46,7 @@ namespace Mosaic.Windows
                 thumbBar = new ThumbnailsBar();
                 thumbBar.Show();
             }
-
+          
             toolbar = new ToolbarWindow();
             toolbar.Show();
         }
@@ -320,12 +319,15 @@ namespace Mosaic.Windows
             {
                 thumbBar = new ThumbnailsBar();
                 thumbBar.Show();
+                
             }
 
             if (thumbBar != null)
                 thumbBar.Activate();
 
             toolbar.Activate();
+       
+
         }
     }
 }

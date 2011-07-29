@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Properties="clr-namespace:Clock.Properties" FontWeight="Light"
              FontFamily="/Mosaic.Base;component/Fonts/#Segoe WP"
-             MouseLeftButtonUp="UserControlMouseLeftButtonUp">
+             MouseLeftButtonUp="UserControlMouseLeftButtonUp" BorderBrush="#B6FFFFFF" BorderThickness="2">
     <UserControl.Background>
         <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
             <GradientStop Color="Green" Offset="0"/>
