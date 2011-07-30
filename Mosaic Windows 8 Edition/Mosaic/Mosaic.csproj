@@ -240,6 +240,7 @@
     <Content Include="AppIcons\opera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\BG.PNG" />
     <Resource Include="Resources\pinweb_icon.png" />
     <Resource Include="Resources\save_icon.png" />
     <Resource Include="Resources\start_icon.png" />

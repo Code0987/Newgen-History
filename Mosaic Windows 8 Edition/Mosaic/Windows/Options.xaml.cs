@@ -59,11 +59,11 @@ namespace Mosaic.Windows
 
             LanguageComboBox.Text = CultureInfo.GetCultureInfo(App.Settings.Language).NativeName;
 
-            EnableExclusiveCheckBox.IsChecked = App.Settings.IsExclusiveMode;
+          //  EnableExclusiveCheckBox.IsChecked = App.Settings.IsExclusiveMode;
             EnableAnimationCheckBox.IsChecked = App.Settings.AnimationEnabled;
             EnableThumbBarCheckBox.IsChecked = App.Settings.EnableThumbnailsBar;
 
-            MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
+           // MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
         }
 
         private void WindowClosed(object sender, EventArgs e)
@@ -93,26 +93,26 @@ namespace Mosaic.Windows
 
         private void ApplySettings()
         {
-            if (App.Settings.IsExclusiveMode != (bool)EnableExclusiveCheckBox.IsChecked)
-                restartRequired = true;
+            /* if (App.Settings.IsExclusiveMode != (bool)EnableExclusiveCheckBox.IsChecked)
+                restartRequired = true; */
 
-            App.Settings.IsExclusiveMode = (bool) EnableExclusiveCheckBox.IsChecked;
-            App.Settings.AnimationEnabled = (bool) EnableAnimationCheckBox.IsChecked;
-            App.Settings.EnableThumbnailsBar = (bool) EnableThumbBarCheckBox.IsChecked;
+           // App.Settings.IsExclusiveMode = (bool)EnableExclusiveCheckBox.IsChecked;
+            App.Settings.AnimationEnabled = (bool)EnableAnimationCheckBox.IsChecked;
+            App.Settings.EnableThumbnailsBar = (bool)EnableThumbBarCheckBox.IsChecked;
 
             var lastLang = App.Settings.Language;
             if (LanguageComboBox.SelectedIndex >= 0)
                 App.Settings.Language = langCodes[LanguageComboBox.SelectedIndex];
             if (!restartRequired)
                 restartRequired = lastLang != App.Settings.Language;
-            
+
             App.Settings.Save(E.Root + "\\Mosaic.config");
         }
 
 
         private void SiteLinkMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            WinAPI.ShellExecute(IntPtr.Zero, "open", "http://mosaicwin8.codeplex.com", string.Empty, string.Empty, 0);
+            WinAPI.ShellExecute(IntPtr.Zero, "open", "http://mosaicproject.codeplex.com", string.Empty, string.Empty, 0);
         }
 
         private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -130,7 +130,7 @@ namespace Mosaic.Windows
             this.Close();
         }
 
-        private void ChangeBgColorButtonClick(object sender, RoutedEventArgs e)
+     /* private void ChangeBgColorButtonClick(object sender, RoutedEventArgs e)
         {
             var c = new System.Windows.Forms.ColorDialog();
             if (c.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -141,10 +141,10 @@ namespace Mosaic.Windows
                 MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
                 if (App.Settings.IsExclusiveMode)
                 {
-                    var window = (MainWindow) App.Current.MainWindow;
+                    var window = (MainWindow)App.Current.MainWindow;
                     window.Background = new SolidColorBrush(E.BackgroundColor);
                 }
             }
-        }
+        } */
     }
 }

@@ -14,11 +14,11 @@ namespace Mosaic
             LoadedWidgets = new List<LoadedWidget>();
             Autostart = false;
             Language = CultureInfo.CurrentUICulture.Name;
-            IsExclusiveMode = false;
+            IsExclusiveMode = true;
             AnimationEnabled = true;
-            ShowGrid = true;
+            ShowGrid = false;
             UseSoftwareRendering = false;
-            BackgroundColor = "#22082f";
+            BackgroundColor = "#FF250931";
             EnableThumbnailsBar = Dwm.IsGlassAvailable() && Dwm.IsGlassEnabled();
         }
 

@@ -20,6 +20,7 @@ namespace Mosaic.Windows
         private ToolbarWindow toolbar;
         private ThumbnailsBar thumbBar;
         private BottomToolbar bottomToolbar;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace Mosaic.Windows
                 thumbBar = new ThumbnailsBar();
                 thumbBar.Show();
             }
-          
+
             toolbar = new ToolbarWindow();
             toolbar.Show();
         }
@@ -61,7 +62,7 @@ namespace Mosaic.Windows
             }
             else
             {
-                this.Height = SystemParameters.PrimaryScreenHeight; 
+                this.Height = SystemParameters.PrimaryScreenHeight;
                 this.Top = 0;
             }
             this.Left = 0;
@@ -319,15 +320,12 @@ namespace Mosaic.Windows
             {
                 thumbBar = new ThumbnailsBar();
                 thumbBar.Show();
-                
             }
 
             if (thumbBar != null)
                 thumbBar.Activate();
 
             toolbar.Activate();
-       
-
         }
     }
 }

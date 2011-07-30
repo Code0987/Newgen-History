@@ -21,6 +21,23 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Threading;
+using Mosaic.Base;
+using Path = System.Windows.Shapes.Path;
 
 namespace Mosaic.Windows
 {
@@ -80,9 +97,36 @@ namespace Mosaic.Windows
 
             InitializeComponent();
         }
+        private void LoadUserPicFromCache()
+        {
+       
+            var ms = new MemoryStream();
+            var stream = new FileStream(E.Root + "\\Cache\\user.png", FileMode.Open, FileAccess.Read);
+            ms.SetLength(stream.Length);
+            stream.Read(ms.GetBuffer(), 0, (int)stream.Length);
+
+            ms.Flush();
+            stream.Close();
+
+            var src = new BitmapImage();
+            src.BeginInit();
+            src.StreamSource = ms;
+            src.EndInit();
+            UserPic.Icon = src;
+        }
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
+            if (File.Exists(E.Root + "\\Cache\\user.png"))
+            {
+                LoadUserPicFromCache();
+            }
+            else if (File.Exists(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp"))
+            {
+                File.Copy(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp", E.Root + "\\Cache\\user.png", true);
+                LoadUserPicFromCache();
+            }
+
             //if (!App.Settings.IsExclusiveMode)
             //    this.Left = SystemParameters.WorkArea.Width - this.Width;
             //else

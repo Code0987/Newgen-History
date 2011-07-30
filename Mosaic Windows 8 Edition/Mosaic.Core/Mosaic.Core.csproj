@@ -82,7 +82,6 @@
     <Compile Include="Controls\WallItem.xaml.cs">
       <DependentUpon>WallItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MosaicHtmlWidget2.cs" />
     <Compile Include="DragScrollViewer.cs" />
     <Compile Include="IconExtractor.cs" />
     <Compile Include="MosaicAppWidget.cs" />
@@ -95,6 +94,7 @@
       <DependentUpon>MosaicFriendWidgetHub.xaml</DependentUpon>
     </Compile>
     <Compile Include="MosaicHtmlWidget.cs" />
+    <Compile Include="MosaicHtmlWidget2.cs" />
     <Compile Include="MosaicMatrix.cs" />
     <Compile Include="MosaicPeopleFeedControl.xaml.cs">
       <DependentUpon>MosaicPeopleFeedControl.xaml</DependentUpon>

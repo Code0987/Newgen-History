@@ -7,16 +7,17 @@
         <Storyboard x:Key="ToolbarOpenAnim" BeginTime="0:0:0.05">
             <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
             <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
-            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Width" To="120" Duration="0:0:0.2"/>-->
+          
         </Storyboard>
         <Storyboard x:Key="ToolbarCloseAnim" BeginTime="0:0:0.3" Completed="ToolbarCloseAnimCompleted">
             <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
             <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="0.01" Duration="0:0:0.4" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
-            <!--<DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Width" To="1" Duration="0:0:0.3" AccelerationRatio="0.5" DecelerationRatio="0.3"/>-->
+           
         </Storyboard>
     </Window.Resources>
     <Grid>
         <StackPanel Name="Toolbar" VerticalAlignment="Center">
+            <Controls:ToolbarItem x:Name="UserPic" Icon="/Resources/exit_icon.png" Title=""/>
             <Controls:ToolbarItem x:Name="WidgetsButton" Icon="/Resources/widgets_icon.png" Title="{x:Static Properties:Resources.WidgetsItem}" MouseLeftButtonUp="WidgetsButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="PinWebButton" Icon="/Resources/pinweb_icon.png" Title="{x:Static Properties:Resources.PinWebItem}" MouseLeftButtonUp="PinWebButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="PinAppButton" Icon="/Resources/pin_icon.png" Title="{x:Static Properties:Resources.PinAppItem}" MouseLeftButtonUp="PinAppButtonMouseLeftButtonUp"/>

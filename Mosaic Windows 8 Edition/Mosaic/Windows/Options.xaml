@@ -21,14 +21,14 @@
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" MaxWidth="450" HorizontalAlignment="Left">
                     <StackPanel Orientation="Vertical" Margin="10">
                         <TextBlock FontSize="30" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsUI}" Margin="0,0,0,0" Foreground="{StaticResource OptionsBigHeaderColor}" TextOptions.TextFormattingMode="Ideal"/>
-                        <CheckBox Name="EnableExclusiveCheckBox" Margin="0,10,0,0" Style="{StaticResource MetroCheckBox}" Content="{x:Static Properties:Resources.OptionsExclusiveMode}" Click="CheckBoxClick"/>
+                        <!--<CheckBox Name="EnableExclusiveCheckBox" Margin="0,10,0,0" Style="{StaticResource MetroCheckBox}" Content="{x:Static Properties:Resources.OptionsExclusiveMode}" Click="CheckBoxClick"/>!-->
                         <CheckBox Name="EnableAnimationCheckBox" Style="{StaticResource MetroCheckBox}" Content="{x:Static Properties:Resources.OptionsEnableAnimation}" Click="CheckBoxClick" Foreground="White"/>
                         <CheckBox Name="EnableThumbBarCheckBox" Style="{StaticResource MetroCheckBox}" Content="{x:Static Properties:Resources.OptionsEnableThumbBar}" Click="CheckBoxClick" Foreground="White"/>
-                        <TextBlock Text="{x:Static Properties:Resources.OptionsBg}" Margin="0,5,0,0" Foreground="White" FontSize="16"/>
-                        <DockPanel>
+                        <!--<TextBlock Text="{x:Static Properties:Resources.OptionsBg}" Margin="0,5,0,0" Foreground="White" FontSize="16"/>!-->
+                        <!--<DockPanel>
                             <Rectangle Name="MosaicBgColor" Fill="Red" Width="48" Height="48" HorizontalAlignment="Left" Margin="0,3,0,0" Stroke="LightGray" StrokeThickness="2"/>
                             <Button Name="ChangeBgColorButton" Style="{StaticResource MetroButton}" Content="{x:Static Properties:Resources.OptionsChangeBg}" Width="125" Height="36" Margin="7,0,7,0" HorizontalAlignment="Left" Click="ChangeBgColorButtonClick"/>
-                        </DockPanel>
+                        </DockPanel>!-->
                         <TextBlock FontSize="30" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsLanguage}" Margin="0,15,0,0" Foreground="{StaticResource OptionsBigHeaderColor}" TextOptions.TextFormattingMode="Ideal"/>
                         <ComboBox Name="LanguageComboBox" SelectionChanged="ComboBoxSelectionChanged" Margin="0,10,0,0" Style="{StaticResource MetroComboBox}" ItemContainerStyle="{StaticResource MetroComboBoxItem}"/>
                         <TextBlock Text="{x:Static Properties:Resources.OptionsRestart}" Margin="0,3,0,0" Foreground="Gray"/>
@@ -42,16 +42,16 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontSize="24" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsAbout}" Margin="0,0,0,0" Foreground="{StaticResource OptionsBigHeaderColor}"/>
                             <Separator/>
-                            <TextBlock Text="Mosaic Windows 8 Edition"  Margin="0,7,0,0" Foreground="White" />
+                            <TextBlock Text="Mosaic Project"  Margin="0,7,0,0"/>
                             <TextBlock>
                                     <Run Text="{x:Static Properties:Resources.OptionsVersion}"/> 
                                     <Run Name="BuildTag" Text="1.0.0.0"/>
                             </TextBlock>
-                            <TextBlock Text="Copyright © Stealth, maximzuriel 2011" Foreground="White" />
+                            <TextBlock Text="Copyright © Stealth 2011"/>
                             <TextBlock Text="{x:Static Properties:Resources.OptionsCopyright}" TextWrapping="Wrap"/>
                             <TextBlock Text="{x:Static Properties:Resources.OptionsAboutAwesomium}" TextWrapping="Wrap"/>
-                            <TextBlock Text="Some icons provided by The Noun Project and the Microsoft Windows Phone Emulator." TextWrapping="Wrap" Foreground="White" />
-                            <TextBlock Name="SiteLink" TextWrapping="Wrap" Text="http://mosaicwin8.codeplex.com" HorizontalAlignment="Left" MouseLeftButtonUp="SiteLinkMouseLeftButtonUp">
+                            <TextBlock Text="{x:Static Properties:Resources.OptionsAboutIcons}" TextWrapping="Wrap"/>
+                            <TextBlock Name="SiteLink" TextWrapping="Wrap" Text="http://mosaicproject.codeplex.com" HorizontalAlignment="Left" MouseLeftButtonUp="SiteLinkMouseLeftButtonUp">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
                                            <Setter Property="Cursor" Value="Hand"/>

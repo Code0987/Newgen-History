@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="Me.MeWidget"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Background="#0f92d6" DragEnter="UserControlDragEnter" Drop="UserControlDrop" ClipToBounds="True" BorderBrush="#B6FFFFFF" BorderThickness="2">
+             Background="#0f92d6" DragEnter="UserControlDragEnter" Drop="UserControlDrop" ClipToBounds="True" BorderBrush="#95FFFFFF" BorderThickness="1">
     <UserControl.Resources>
         <Storyboard x:Key="TileAnim">
             <DoubleAnimation Storyboard.TargetName="UserPicTranslate" Storyboard.TargetProperty="Y" From="0" To="90" Duration="0:0:0.4" AccelerationRatio="0.3" DecelerationRatio="0.7"/>
