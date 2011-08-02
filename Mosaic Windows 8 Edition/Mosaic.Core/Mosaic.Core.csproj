@@ -52,10 +52,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AwesomiumSharp">
-      <HintPath>..\bin\Debug\AwesomiumSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\MW8E\AwesomiumSharp.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\bin\Debug\NLog.dll</HintPath>
+      <HintPath>..\..\..\..\..\MW8E\NLog.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

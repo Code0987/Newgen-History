@@ -38,8 +38,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\..\..\..\..\..\MW8E\Widgets\Video\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>C:\Users\Stealth\Downloads\Windows API Code Pack 1.1\Windows API Code Pack 1.1\binaries\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\MW8E\Widgets\Video\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

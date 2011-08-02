@@ -39,7 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Hammock.ClientProfile">
-      <HintPath>C:\Users\Stealth\Downloads\TweetSharp-Binaries\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\MW8E\Widgets\Twitter\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\MW8E\Widgets\Twitter\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -52,7 +55,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="TweetSharp">
-      <HintPath>C:\Users\Stealth\Downloads\TweetSharp-Binaries\lib\4.0\TweetSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\MW8E\Widgets\Twitter\TweetSharp.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

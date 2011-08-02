@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="FacebookApi, Version=5.0.26.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Mosaic Mango Edition\bin\Debug\FacebookApi.dll</HintPath>
+      <HintPath>..\..\..\..\..\MW8E\FacebookApi.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

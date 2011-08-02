@@ -15,6 +15,11 @@
         <Grid DockPanel.Dock="Top">
             <Image Name="BackButton" Margin="50,58,20,0" Source="/Resources/back_icon_hub.png" Width="48" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonUp="BackButtonMouseLeftButtonUp"/>
             <TextBlock Text="Options" Foreground="White" FontSize="76" FontWeight="Light" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,20,0,0" TextOptions.TextFormattingMode="Ideal"/>
+            <Button Height="39" HorizontalAlignment="Left" Margin="540,65,0,0" Name="button1" VerticalAlignment="Top" Width="59" Foreground="White" BorderBrush="Black" Style="{StaticResource MetroButton}" Click="button1_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Mosaic;component/Resources/share_icon.png" Stretch="UniformToFill" TileMode="None" />
+                </Button.Background>
+            </Button>
         </Grid>
         <TabControl Margin="150,-20,0,0" Background="Transparent" BorderThickness="0">
             <TabItem Header="{x:Static Properties:Resources.OptionsGeneralTabHeader}" Style="{StaticResource TabItemStyle}">
@@ -47,11 +52,11 @@
                                     <Run Text="{x:Static Properties:Resources.OptionsVersion}"/> 
                                     <Run Name="BuildTag" Text="1.0.0.0"/>
                             </TextBlock>
-                            <TextBlock Text="Copyright © Stealth 2011"/>
+                            <TextBlock Text="Copyright © MW8E 2011" Foreground="White" />
                             <TextBlock Text="{x:Static Properties:Resources.OptionsCopyright}" TextWrapping="Wrap"/>
                             <TextBlock Text="{x:Static Properties:Resources.OptionsAboutAwesomium}" TextWrapping="Wrap"/>
                             <TextBlock Text="{x:Static Properties:Resources.OptionsAboutIcons}" TextWrapping="Wrap"/>
-                            <TextBlock Name="SiteLink" TextWrapping="Wrap" Text="http://mosaicproject.codeplex.com" HorizontalAlignment="Left" MouseLeftButtonUp="SiteLinkMouseLeftButtonUp">
+                            <TextBlock Name="SiteLink" TextWrapping="Wrap" Text="http://mosaicwin8.codeplex.com" HorizontalAlignment="Left" MouseLeftButtonUp="SiteLinkMouseLeftButtonUp">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
                                            <Setter Property="Cursor" Value="Hand"/>

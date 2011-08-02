@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog">
-      <HintPath>..\..\..\..\HTC Home\HTC Home 3\HTC Home 3.0 Build 621 pre-Centris\NLog.dll</HintPath>
+      <HintPath>..\..\..\..\..\MW8E\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -240,6 +240,7 @@
     <Content Include="AppIcons\opera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\share_icon.png" />
     <Resource Include="Images\BG.PNG" />
     <Resource Include="Resources\pinweb_icon.png" />
     <Resource Include="Resources\save_icon.png" />
