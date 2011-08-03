@@ -54,12 +54,15 @@ namespace Mosaic.Core
             icon.Width = 32;
             icon.Height = 32;
 
-            var bgBrush = new LinearGradientBrush();
-            bgBrush.StartPoint = new Point(0, 0);
+            ImageBrush ib = new ImageBrush();
+            ib.ImageSource = new BitmapImage(new Uri(E.Root + "\\AppIcons\\BG.png"));
+            var bgBrush = new Image();
+            /* bgBrush.StartPoint = new Point(0, 0);
             bgBrush.EndPoint = new Point(1, 0);
             bgBrush.GradientStops.Add(new GradientStop((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#280a37"), 0));
-            bgBrush.GradientStops.Add(new GradientStop((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#2f0d40"), 1));
-            root.Background = bgBrush;
+            bgBrush.GradientStops.Add(new GradientStop((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#2f0d40"), 1)); */
+            root.Background = ib;
+            
 
             var source = GetIcon(file);
             icon.Source = source;

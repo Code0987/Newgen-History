@@ -14,7 +14,7 @@ namespace Mosaic
             LoadedWidgets = new List<LoadedWidget>();
             Autostart = false;
             Language = CultureInfo.CurrentUICulture.Name;
-            IsExclusiveMode = true;
+            IsExclusiveMode = false;
             AnimationEnabled = true;
             ShowGrid = false;
             UseSoftwareRendering = false;

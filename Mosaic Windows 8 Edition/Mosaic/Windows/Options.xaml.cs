@@ -59,11 +59,11 @@ namespace Mosaic.Windows
 
             LanguageComboBox.Text = CultureInfo.GetCultureInfo(App.Settings.Language).NativeName;
 
-          //  EnableExclusiveCheckBox.IsChecked = App.Settings.IsExclusiveMode;
+            EnableExclusiveCheckBox.IsChecked = App.Settings.IsExclusiveMode;
             EnableAnimationCheckBox.IsChecked = App.Settings.AnimationEnabled;
             EnableThumbBarCheckBox.IsChecked = App.Settings.EnableThumbnailsBar;
 
-           // MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
+            MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
         }
 
         private void WindowClosed(object sender, EventArgs e)
@@ -93,10 +93,10 @@ namespace Mosaic.Windows
 
         private void ApplySettings()
         {
-            /* if (App.Settings.IsExclusiveMode != (bool)EnableExclusiveCheckBox.IsChecked)
-                restartRequired = true; */
+            if (App.Settings.IsExclusiveMode != (bool)EnableExclusiveCheckBox.IsChecked)
+                restartRequired = true;
 
-           // App.Settings.IsExclusiveMode = (bool)EnableExclusiveCheckBox.IsChecked;
+            App.Settings.IsExclusiveMode = (bool)EnableExclusiveCheckBox.IsChecked;
             App.Settings.AnimationEnabled = (bool)EnableAnimationCheckBox.IsChecked;
             App.Settings.EnableThumbnailsBar = (bool)EnableThumbBarCheckBox.IsChecked;
 
@@ -114,6 +114,22 @@ namespace Mosaic.Windows
         {
             WinAPI.ShellExecute(IntPtr.Zero, "open", "http://mosaicwin8.codeplex.com", string.Empty, string.Empty, 0);
         }
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+
+            WinAPI.ShellExecute(IntPtr.Zero, "open", "https://mail.google.com/mail/?shva=1#compose", string.Empty, string.Empty, 0);
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to reset Mosaic settings(This will not remove your widgets) ?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                App.Settings.AnimationEnabled = (bool)true;
+                App.Settings.EnableThumbnailsBar = (bool)true;
+                App.Settings.Save(E.Root + "\\Mosaic.config");
+            }
+        }
+
 
         private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -130,12 +146,7 @@ namespace Mosaic.Windows
             this.Close();
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            WinAPI.ShellExecute(IntPtr.Zero, "open", "https://mail.google.com/mail/?shva=1#compose", string.Empty, string.Empty, 0);
-        }
-
-     /* private void ChangeBgColorButtonClick(object sender, RoutedEventArgs e)
+        private void ChangeBgColorButtonClick(object sender, RoutedEventArgs e)
         {
             var c = new System.Windows.Forms.ColorDialog();
             if (c.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -150,6 +161,6 @@ namespace Mosaic.Windows
                     window.Background = new SolidColorBrush(E.BackgroundColor);
                 }
             }
-        } */
+        }
     }
 }
