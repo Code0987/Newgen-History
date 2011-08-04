@@ -157,7 +157,7 @@ namespace Mosaic.Controls
             Opacity = 1;
         }
 
-        private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+       /* private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var s = Resources["MouseDownAnim"] as Storyboard;
             s.Begin();
@@ -172,7 +172,7 @@ namespace Mosaic.Controls
             var s = Resources["MouseUpAnim"] as Storyboard;
             s.Begin();
             MousePressed = false;
-        }
+        } */
 
         private void UserControlMouseLeave(object sender, MouseEventArgs e)
         {
