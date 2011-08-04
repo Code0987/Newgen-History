@@ -19,10 +19,12 @@ namespace Mosaic
             ShowGrid = false;
             UseSoftwareRendering = false;
             BackgroundColor = "#FF250931";
+            DragEverywhere = true;
             EnableThumbnailsBar = Dwm.IsGlassAvailable() && Dwm.IsGlassEnabled();
         }
 
         public List<LoadedWidget> LoadedWidgets { get; set; }
+        public bool DragEverywhere { get; set; }
         public bool Autostart { get; set; }
         public string Language { get; set; }
         public bool IsExclusiveMode { get; set; }

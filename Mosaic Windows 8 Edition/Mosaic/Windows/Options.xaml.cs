@@ -94,12 +94,17 @@ namespace Mosaic.Windows
         private void ApplySettings()
         {
             if (App.Settings.IsExclusiveMode != (bool)EnableExclusiveCheckBox.IsChecked)
+            {
                 restartRequired = true;
-
+            }
+            if (App.Settings.DragEverywhere != (bool)checkBox1.IsChecked)
+            {
+                restartRequired = true;
+            }
             App.Settings.IsExclusiveMode = (bool)EnableExclusiveCheckBox.IsChecked;
             App.Settings.AnimationEnabled = (bool)EnableAnimationCheckBox.IsChecked;
             App.Settings.EnableThumbnailsBar = (bool)EnableThumbBarCheckBox.IsChecked;
-
+            App.Settings.DragEverywhere = (bool)checkBox1.IsChecked;
             var lastLang = App.Settings.Language;
             if (LanguageComboBox.SelectedIndex >= 0)
                 App.Settings.Language = langCodes[LanguageComboBox.SelectedIndex];

@@ -157,14 +157,18 @@ namespace Mosaic.Controls
             Opacity = 1;
         }
 
-       /* private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+      private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                //Ctrl key is down
             var s = Resources["MouseDownAnim"] as Storyboard;
             s.Begin();
             MousePressed = true;
             Keyboard.Focus(this);
             FocusManager.SetFocusedElement(this, this);
             var a = Keyboard.FocusedElement;
+            }
         }
 
         private void UserControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -172,7 +176,8 @@ namespace Mosaic.Controls
             var s = Resources["MouseUpAnim"] as Storyboard;
             s.Begin();
             MousePressed = false;
-        } */
+
+        } 
 
         private void UserControlMouseLeave(object sender, MouseEventArgs e)
         {

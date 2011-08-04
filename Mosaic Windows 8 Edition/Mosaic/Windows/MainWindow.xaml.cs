@@ -30,6 +30,7 @@ namespace Mosaic.Windows
             if (App.Settings.IsExclusiveMode)
             {
                 this.Background = new SolidColorBrush(E.BackgroundColor);
+                DragScroll.DragEverywhere = App.Settings.DragEverywhere;
                 //this.AllowsTransparency = false;
             }
         }
@@ -133,9 +134,23 @@ namespace Mosaic.Windows
             control.Unload();
             App.WindowManager.Matrix.FreeSpace(col, row, colspan);
         }
-
+        
         void ControlMouseMove(object sender, MouseEventArgs e)
         {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                if (App.Settings.DragEverywhere == true)
+                {
+                    DragScroll.DragEverywhere = false;
+                }
+            }
+            else
+            {
+                if (App.Settings.DragEverywhere == true)
+                {
+                    DragScroll.DragEverywhere = true;
+                }
+            }
             if (DragScroll.IsDragging)
                 return;
 
