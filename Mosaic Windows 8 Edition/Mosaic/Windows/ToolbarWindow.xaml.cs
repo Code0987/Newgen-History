@@ -98,7 +98,7 @@ namespace Mosaic.Windows
             src.BeginInit();
             src.StreamSource = ms;
             src.EndInit();
-            UserPic.Icon = src;
+            //UserPic.Icon = src;
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e)

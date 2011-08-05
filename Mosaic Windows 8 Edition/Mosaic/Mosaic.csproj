@@ -243,6 +243,7 @@
     <Content Include="AppIcons\opera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\user.png" />
     <Resource Include="Images\appbar.questionmark.rest.png" />
     <Resource Include="Images\appbar.sync.rest.png" />
     <Resource Include="Resources\share_icon.png" />

@@ -8,6 +8,32 @@ using System.Windows.Media;
 using Mosaic.Base;
 using Mosaic.Controls;
 using Mosaic.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Interop;
+using Screen = System.Windows.Forms.Screen;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using Microsoft.Win32;
+using Mosaic.Base;
+using Mosaic.Controls;
+using Mosaic.Core;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Windows.Navigation;
+using System.Windows.Threading;
+using Path = System.Windows.Shapes.Path;
 
 namespace Mosaic.Windows
 {
@@ -52,9 +78,18 @@ namespace Mosaic.Windows
             toolbar = new ToolbarWindow();
             toolbar.Show();
         }
-
+   
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
+            //UserPic image
+            ImageBrush brush1 = new ImageBrush();
+            BitmapImage image = new BitmapImage(new Uri(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp"));
+            brush1.ImageSource = image;
+            button1.Background = brush1;
+
+            //User Name
+            label2.Content = Environment.UserName;
+
             this.Width = SystemParameters.PrimaryScreenWidth;
             if (!App.Settings.IsExclusiveMode)
             {

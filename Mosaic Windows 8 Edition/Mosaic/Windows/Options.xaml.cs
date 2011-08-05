@@ -62,6 +62,7 @@ namespace Mosaic.Windows
             EnableExclusiveCheckBox.IsChecked = App.Settings.IsExclusiveMode;
             EnableAnimationCheckBox.IsChecked = App.Settings.AnimationEnabled;
             EnableThumbBarCheckBox.IsChecked = App.Settings.EnableThumbnailsBar;
+            checkBox1.IsChecked = App.Settings.DragEverywhere;
 
             MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
         }
