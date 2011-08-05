@@ -16,7 +16,7 @@
         </Storyboard>
     </Window.Resources>
     <Grid>
-        <Controls:ToolbarItem x:Name="UserPic" VerticalAlignment="Top" Icon="/Resources/exit_icon.png" Title="" MouseLeftButtonUp="BackButtonMouseLeftButtonUp"/>
+        <!--<Controls:ToolbarItem x:Name="UserPic" VerticalAlignment="Top" Icon="/Resources/exit_icon.png" Title="" MouseLeftButtonUp="BackButtonMouseLeftButtonUp"/>!-->
         <StackPanel Name="Toolbar" VerticalAlignment="Center">
             <Controls:ToolbarItem x:Name="WidgetsButton" Icon="/Resources/widgets_icon.png" Title="{x:Static Properties:Resources.WidgetsItem}" MouseLeftButtonUp="WidgetsButtonMouseLeftButtonUp"/>
             <Controls:ToolbarItem x:Name="PinWebButton" Icon="/Resources/pinweb_icon.png" Title="{x:Static Properties:Resources.PinWebItem}" MouseLeftButtonUp="PinWebButtonMouseLeftButtonUp"/>
