@@ -31,9 +31,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Social.Base", "Social.Base\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "People", "Widgets\People\People.csproj", "{B76F97DB-264C-4848-9290-4B97D6A9EF63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "Widget1\Store.csproj", "{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 15
+		SccNumberOfProjects = 16
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs30
 		SccLocalPath0 = .
@@ -89,6 +91,10 @@ Global
 		SccProjectTopLevelParentUniqueName14 = Mosaic.sln
 		SccProjectName14 = Widgets/Weather
 		SccLocalPath14 = Widgets\\Weather
+		SccProjectUniqueName15 = Widget1\\Store.csproj
+		SccProjectTopLevelParentUniqueName15 = Mosaic.sln
+		SccProjectName15 = Widget1
+		SccLocalPath15 = Widget1
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -239,6 +245,16 @@ Global
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63}.Release|x86.ActiveCfg = Release|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -254,5 +270,6 @@ Global
 		{1670225C-BAA3-49AC-A8D6-44D75A973B31} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
 		{A03D7F01-93CE-4955-B004-F66C0786BD26} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
 		{B76F97DB-264C-4848-9290-4B97D6A9EF63} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
+		{C0184D8F-A287-47BD-9E91-EE8483F1C8D4} = {C1A3AFE3-2630-454E-8DA2-B4188B8E3F2C}
 	EndGlobalSection
 EndGlobal

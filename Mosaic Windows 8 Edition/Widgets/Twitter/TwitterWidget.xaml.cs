@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -126,50 +127,50 @@ namespace Twitter
         private void GetLatestTweet()
         {
             ThreadStart threadStarter = () =>
-                                            {
-                                                TwitterRateLimitStatus rates;
-                                                try
-                                                {
-                                                    rates = Service.GetRateLimitStatus();
-                                                }
-                                                catch
-                                                {
-                                                    return;
-                                                }
-                                                if (rates == null || rates.RemainingHits == 0)
-                                                    return;
-                                                IEnumerable<TwitterStatus> tweets = null;
-                                                if (Widget.Settings.LastTweetId > 0)
-                                                    tweets = Service.ListTweetsOnFriendsTimelineSince(Widget.Settings.LastTweetId);
-                                                else
-                                                    tweets = Service.ListTweetsOnFriendsTimeline();
-                                                TwitterStatus lastTweet;
-                                                if (tweets != null && tweets.Count() > 0)
-                                                {
-                                                    UnreadCount.Dispatcher.Invoke((Action)delegate
-                                                                                               {
-                                                                                                   UnreadCount.Text = tweets.Count().ToString();
-                                                                                               });
-                                                    lastTweet = tweets.First();
-                                                }
-                                                else
-                                                    return;
-                                                //lastTweet = Service.ListTweetsOnFriendsTimeline(1).First();
-                                                this.Dispatcher.Invoke((Action)delegate
-                                                                                   {
-                                                                                       var userpic = lastTweet.User.ProfileImageUrl.Replace("_normal", "");
+            {
+                TwitterRateLimitStatus rates;
+                try
+                {
+                    rates = Service.GetRateLimitStatus();
+                }
+                catch
+                {
+                    return;
+                }
+                if (rates == null || rates.RemainingHits == 0)
+                    return;
+                IEnumerable<TwitterStatus> tweets = null;
+                if (Widget.Settings.LastTweetId > 0)
+                    tweets = Service.ListTweetsOnFriendsTimelineSince(Widget.Settings.LastTweetId);
+                else
+                    tweets = Service.ListTweetsOnFriendsTimeline();
+                TwitterStatus lastTweet;
+                if (tweets != null && tweets.Count() > 0)
+                {
+                    UnreadCount.Dispatcher.Invoke((Action)delegate
+                    {
+                        UnreadCount.Text = tweets.Count().ToString();
+                    });
+                    lastTweet = tweets.First();
+                }
+                else
+                    return;
+                //lastTweet = Service.ListTweetsOnFriendsTimeline(1).First();
+                this.Dispatcher.Invoke((Action)delegate
+                {
+                    var userpic = lastTweet.User.ProfileImageUrl.Replace("_normal", "");
 
-                                                                                       UserPic.Source = new BitmapImage(new Uri(userpic));
-                                                                                       Username.Text = lastTweet.User.ScreenName;
-                                                                                       Tweet.Text = lastTweet.Text;
-                                                                                       lastTweetUrl = string.Format("http://twitter.com/#!/{0}/status/{1}", lastTweet.User.ScreenName, lastTweet.Id);
-                                                                                       if (Widget.Settings.LastTweetId.ToString() != lastTweet.Id.ToString())
-                                                                                       {
-                                                                                           Widget.Settings.LastTweetId = long.Parse(lastTweet.Id.ToString());
-                                                                                           tileAnimTimer.Start();
-                                                                                       }
-                                                                                   });
-                                            };
+                    UserPic.Source = new BitmapImage(new Uri(userpic));
+                    Username.Text = lastTweet.User.ScreenName;
+                    Tweet.Text = lastTweet.Text;
+                    lastTweetUrl = string.Format("http://twitter.com/#!/{0}/status/{1}", lastTweet.User.ScreenName, lastTweet.Id);
+                    if (Widget.Settings.LastTweetId.ToString() != lastTweet.Id.ToString())
+                    {
+                        Widget.Settings.LastTweetId = long.Parse(lastTweet.Id.ToString());
+                        tileAnimTimer.Start();
+                    }
+                });
+            };
             var thread = new Thread(threadStarter);
             thread.Start();
         }
