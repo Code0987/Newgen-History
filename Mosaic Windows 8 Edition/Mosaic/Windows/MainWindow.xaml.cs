@@ -1,39 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
-using Mosaic.Base;
-using Mosaic.Controls;
-using Mosaic.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Interop;
-using Screen = System.Windows.Forms.Screen;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using Mosaic.Base;
-using Mosaic.Controls;
-using Mosaic.Core;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Windows.Navigation;
-using System.Windows.Threading;
-using Path = System.Windows.Shapes.Path;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Mosaic.Base;
+using Mosaic.Controls;
+using Mosaic.Core;
 
 namespace Mosaic.Windows
 {
@@ -42,10 +18,11 @@ namespace Mosaic.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<WidgetControl> runningWidgets;
+        internal List<WidgetControl> runningWidgets;
         private ToolbarWindow toolbar;
         private ThumbnailsBar thumbBar;
         private BottomToolbar bottomToolbar;
+        private LockScreen lc;
 
         public MainWindow()
         {
@@ -69,27 +46,29 @@ namespace Mosaic.Windows
             Dwm.RemoveFromAltTab(handle);
             Dwm.RemoveFromFlip3D(handle);
 
+            toolbar = new ToolbarWindow();
+            toolbar.Opacity = 0;
+            toolbar.Show();
             if (App.Settings.EnableThumbnailsBar)
             {
                 thumbBar = new ThumbnailsBar();
+                thumbBar.Opacity = 0;
                 thumbBar.Show();
             }
 
-            toolbar = new ToolbarWindow();
-            toolbar.Show();
+            iFr.Helper.Animate(this, OpacityProperty, 500, 0, 1);
+            iFr.Helper.Delay(new Action(() =>
+            {
+                if (this.thumbBar != null) { this.thumbBar.Opacity = 1; }
+                this.toolbar.Opacity = 1;
+            }), 1500);
+
+            lc = new LockScreen();
+            this.Root.Children.Add(lc);
         }
-   
+
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            //UserPic image
-            ImageBrush brush1 = new ImageBrush();
-            BitmapImage image = new BitmapImage(new Uri(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp"));
-            brush1.ImageSource = image;
-            button1.Background = brush1;
-
-            //User Name
-            label2.Content = Environment.UserName;
-
             this.Width = SystemParameters.PrimaryScreenWidth;
             if (!App.Settings.IsExclusiveMode)
             {
@@ -103,7 +82,13 @@ namespace Mosaic.Windows
             }
             this.Left = 0;
 
-            App.WindowManager.Initialize();
+            // DRH
+            double tileswidth = SystemParameters.PrimaryScreenWidth * 2;
+            int c = (int)Math.Round(tileswidth / E.MinTileWidth);
+            double tilesheight = this.WidgetsContainer.ActualHeight - (20); // -20 for the scrollbar
+            int r = (int)(tilesheight / (E.MinTileHeight - E.TileSpacing * 2));
+
+            App.WindowManager.Initialize(c, r);
             MarkupGrid();
 
             runningWidgets = new List<WidgetControl>();
@@ -138,9 +123,11 @@ namespace Mosaic.Windows
                 }
             }
 
+            // UserTile
+            this.LoadUserTileInfo();
         }
 
-        void WidgetManagerWidgetLoaded(WidgetProxy widget)
+        private void WidgetManagerWidgetLoaded(WidgetProxy widget)
         {
             var control = new WidgetControl(widget);
             control.Order = WidgetHost.Children.Count;
@@ -151,26 +138,43 @@ namespace Mosaic.Windows
             control.Load();
             PlaceWidget(control);
             WidgetHost.Children.Add(control);
+            if (!widget.Path.StartsWith("http://"))
+            {
+                if (App.Settings.IsAppWidgetBgStatic)
+                {
+                    try
+                    {
+                        control.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Settings.AppWidgetBackgroundColor));
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
         }
 
-        void WidgetManagerWidgetUnloaded(WidgetProxy widget)
+        private void WidgetManagerWidgetUnloaded(WidgetProxy widget)
         {
             var control = runningWidgets.Find(x => x.WidgetProxy == widget);
             if (control == null)
                 return;
-            control.MouseLeftButtonDown -= ControlMouseLeftButtonDown;
-            control.MouseLeftButtonUp -= ControlMouseLeftButtonUp;
-            control.MouseMove -= ControlMouseMove;
-            var col = Grid.GetColumn(control);
-            var row = Grid.GetRow(control);
-            var colspan = Grid.GetColumnSpan(control);
-            WidgetHost.Children.Remove(control);
-            runningWidgets.Remove(control);
-            control.Unload();
-            App.WindowManager.Matrix.FreeSpace(col, row, colspan);
+            iFr.Helper.Animate(control, OpacityProperty, 250, 0, 0.7, 0.3);
+            iFr.Helper.Delay(new Action(() =>
+            {
+                control.MouseLeftButtonDown -= ControlMouseLeftButtonDown;
+                control.MouseLeftButtonUp -= ControlMouseLeftButtonUp;
+                control.MouseMove -= ControlMouseMove;
+                var col = Grid.GetColumn(control);
+                var row = Grid.GetRow(control);
+                var colspan = Grid.GetColumnSpan(control);
+                WidgetHost.Children.Remove(control);
+                runningWidgets.Remove(control);
+                control.Unload();
+                App.WindowManager.Matrix.FreeSpace(col, row, colspan);
+            }), 250);
         }
-        
-        void ControlMouseMove(object sender, MouseEventArgs e)
+
+        private void ControlMouseMove(object sender, MouseEventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
@@ -234,7 +238,7 @@ namespace Mosaic.Windows
             }
         }
 
-        void ControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void ControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.Captured != sender)
                 return;
@@ -273,7 +277,7 @@ namespace Mosaic.Windows
 
         private double mouseX, mouseY;
 
-        void ControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.Captured == sender)
             {
@@ -340,7 +344,6 @@ namespace Mosaic.Windows
             //((Window)widget).Top = cell.Row * (E.MinTileHeight) + E.TileSpacing;
         }
 
-
         private void CloseItemClick(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -376,6 +379,45 @@ namespace Mosaic.Windows
                 thumbBar.Activate();
 
             toolbar.Activate();
+        }
+
+        internal void LoadUserTileInfo()
+        {
+            if (!App.Settings.IsUserTileEnabled) { this.UserTile.Visibility = Visibility.Collapsed; }
+            else
+            {
+                this.UserTile.Visibility = Visibility.Visible;
+                this.UserTile.Opacity = 0;
+                iFr.Helper.Animate(this.UserTile, OpacityProperty, 1000, 1);
+
+                try
+                {
+                    if (File.Exists(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp"))
+                    {
+                        File.Copy(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp", E.Root + "\\Cache\\user.png", true);
+                    }
+
+                    Header_UserName.Text = Environment.UserName;
+                    var ms = new MemoryStream();
+                    var stream = new FileStream(E.Root + "\\Cache\\user.png", FileMode.Open, FileAccess.Read);
+                    ms.SetLength(stream.Length);
+                    stream.Read(ms.GetBuffer(), 0, (int)stream.Length);
+
+                    ms.Flush();
+                    stream.Close();
+
+                    var src = new BitmapImage();
+                    src.BeginInit();
+                    src.StreamSource = ms;
+                    src.EndInit();
+                    Header_UserPic.Source = src;
+                }
+                catch { }
+            }
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
         }
     }
 }
