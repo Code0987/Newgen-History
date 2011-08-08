@@ -147,6 +147,9 @@
   <data name="OptionsChangeBg" xml:space="preserve">
     <value>change</value>
   </data>
+  <data name="OptionsChangeStaticAppWidgetBgColor" xml:space="preserve">
+    <value>change</value>
+  </data>
   <data name="OptionsCopyright" xml:space="preserve">
     <value>This software is protected by copyright law and distributed under Microsoft Public License.</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="OptionsEnableThumbBar" xml:space="preserve">
     <value>Enable windows thumbnails bar</value>
+  </data>
+  <data name="OptionsEnableUserTile" xml:space="preserve">
+    <value>Enable UserTile (User name and Picture) on main screen.</value>
   </data>
   <data name="OptionsExclusiveMode" xml:space="preserve">
     <value>Enable fullscreen mode</value>
@@ -168,11 +174,20 @@
   <data name="OptionsLanguage" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="OptionsLockScreenTime" xml:space="preserve">
+    <value>Lock screen time (in minutes):</value>
+  </data>
   <data name="OptionsOkButton" xml:space="preserve">
     <value>ok</value>
   </data>
   <data name="OptionsRestart" xml:space="preserve">
     <value>Changes will be applied after restarting Mosaic.</value>
+  </data>
+  <data name="OptionsStaticAppWidgetBg" xml:space="preserve">
+    <value>Use custom color for pinned applications background</value>
+  </data>
+  <data name="OptionsStaticAppWidgetBgColor" xml:space="preserve">
+    <value>Custom color for Pinned applications background :</value>
   </data>
   <data name="OptionsUI" xml:space="preserve">
     <value>User interface</value>

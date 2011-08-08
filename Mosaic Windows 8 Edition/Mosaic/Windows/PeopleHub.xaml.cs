@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Mosaic.Controls;
 using Social.Base;
 
@@ -50,9 +41,11 @@ namespace Mosaic.Windows
             var thread = new Thread(threadStarter);
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
+
+            iFr.Helper.Animate(this, OpacityProperty, 500, 0, 1);
         }
 
-        void SocialProviderSignedIn(object sender, EventArgs e)
+        private void SocialProviderSignedIn(object sender, EventArgs e)
         {
             socialProvider.SignedIn -= SocialProviderSignedIn;
             ThreadStart threadStarter = delegate
@@ -77,11 +70,9 @@ namespace Mosaic.Windows
             var thread = new Thread(threadStarter);
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
-
-
         }
 
-        void ItemMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void ItemMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var item = (PeopleItem)sender;
             if (App.WidgetManager.IsWidgetLoaded(item.Friend.Name))
@@ -97,6 +88,8 @@ namespace Mosaic.Windows
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            iFr.Helper.Animate(this, OpacityProperty, 250, 0);
+
             foreach (PeopleItem item in PeoplePanel.Children)
             {
                 item.MouseLeftButtonUp -= ItemMouseLeftButtonUp;

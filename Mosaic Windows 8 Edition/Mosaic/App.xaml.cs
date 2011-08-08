@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -27,6 +25,22 @@ namespace Mosaic
         public static WidgetManager WidgetManager;
         public static Settings Settings;
         public static Options OptionsWindow;
+
+        string root = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        public App()
+        {
+            App.Current.DispatcherUnhandledException +=
+                new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(ApplicationDispatcherUnhandledException);
+
+            AppDomain.CurrentDomain.UnhandledException +=
+                      new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
+            if (!Directory.Exists(root + "\\Logs"))
+                Directory.CreateDirectory(root + "\\Logs");
+            if (!File.Exists(root + "\\Logs\\ErrorLog.txt"))
+                File.Create(root + "\\Logs\\ErrorLog.txt");
+        }
 
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {
@@ -126,7 +140,64 @@ namespace Mosaic
 
         private void ApplicationDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            logger.Error("An error occured.\n" + e.Exception);
+            try
+            {
+                logger.Error("An error occurred.\n" + e.Exception);
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine();
+                sb.AppendLine("----------------------------------------------------------------");
+                sb.AppendLine(DateTime.Now.ToString());
+                sb.AppendLine("----------------------------------------------------------------");
+                sb.AppendLine(e.Exception.Message);
+                if (e.Exception.StackTrace != null)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine(e.Exception.StackTrace);
+                    sb.AppendLine();
+                }
+                if (e.Exception.InnerException != null && e.Exception.InnerException.Message != null)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine(e.Exception.InnerException.Message);
+                    sb.AppendLine();
+                }
+                sb.AppendLine("----------------------------------------------------------------");
+
+                File.AppendAllText(root + "\\Logs\\ErrorLog.txt", sb.ToString());
+            }
+            catch { }
+
+            e.Handled = true;
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                Exception ex = e.ExceptionObject as Exception; StringBuilder sb = new StringBuilder();
+                sb.AppendLine();
+                sb.AppendLine("----------------------------------------------------------------");
+                sb.AppendLine(DateTime.Now.ToString());
+                sb.AppendLine("----------------------------------------------------------------");
+                sb.AppendLine(ex.Message);
+                if (ex.StackTrace != null)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine(ex.StackTrace);
+                    sb.AppendLine();
+                }
+                if (ex.InnerException != null && ex.InnerException.Message != null)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine(ex.InnerException.Message);
+                    sb.AppendLine();
+                }
+                sb.AppendLine("----------------------------------------------------------------");
+
+                File.AppendAllText(root + "\\Logs\\ErrorLog.txt", sb.ToString());
+            }
+            catch { }
         }
     }
 }

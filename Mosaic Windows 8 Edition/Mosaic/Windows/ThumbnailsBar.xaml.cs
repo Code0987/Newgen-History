@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Mosaic.Base;
 using Mosaic.Controls;
 
@@ -29,13 +23,11 @@ namespace Mosaic.Windows
             {
                 this.Height = SystemParameters.WorkArea.Height;
                 this.Top = SystemParameters.WorkArea.Top;
-                this.Opacity = 1;
             }
             else
             {
                 this.Height = SystemParameters.PrimaryScreenHeight;
                 this.Top = 0;
-                this.Opacity = 1;
             }
 
             InitializeComponent();
@@ -52,11 +44,10 @@ namespace Mosaic.Windows
             }
 
             var s = Resources["ToolbarCloseAnim"] as Storyboard;
-            s.BeginTime = TimeSpan.FromMilliseconds(800);
+            s.BeginTime = TimeSpan.FromMilliseconds(500);
             s.Begin();
             s.BeginTime = TimeSpan.FromMilliseconds(300);
-            InitializeThumbnails();
-
+            //InitializeThumbnails();
         }
 
         private void ToolbarMouseLeave(object sender, MouseEventArgs e)
@@ -86,6 +77,8 @@ namespace Mosaic.Windows
             var s = Resources["ToolbarOpenAnim"] as Storyboard;
             s.Begin();
             isOpened = true;
+
+            this.Opacity = 1;
 
             InitializeThumbnails();
         }
@@ -129,7 +122,7 @@ namespace Mosaic.Windows
                     current = WinAPI.GetWindow(current, WinAPI.GetWindowCmd.Next);
             }
             while (current != IntPtr.Zero);
-            Opacity = 1;
+            //Opacity = 1;
 
             //invalidate layout, without this thumbnails will be invisible
             Width++;
@@ -145,7 +138,6 @@ namespace Mosaic.Windows
 
         private void ToolbaOpenAnimCompleted(object sender, EventArgs e)
         {
-
         }
 
         private void ToolbarCloseAnimCompleted(object sender, EventArgs e)

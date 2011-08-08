@@ -40,7 +40,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -48,6 +48,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -61,6 +62,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>..\bin\Debug\</OutputPath>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -82,11 +84,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog">
-      <HintPath>..\..\..\..\..\MW8E\NLog.dll</HintPath>
+    <Reference Include="iFr.Helper, Version=1.0.0.39922, Culture=neutral, PublicKeyToken=c5fd6d7f36d8f34b, processorArchitecture=MSIL">
+      <HintPath>..\Ref\iFr.Helper.dll</HintPath>
     </Reference>
-    <Reference Include="PreEmptive.Attributes">
-      <HintPath>..\..\..\..\..\Program Files\Microsoft Visual Studio 10.0\PreEmptive Solutions\Dotfuscator Community Edition\PreEmptive.Attributes.dll</HintPath>
+    <Reference Include="NLog">
+      <HintPath>..\Ref\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -125,14 +127,15 @@
       <DependentUpon>ToolbarItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoadedWidget.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Windows\AddressBarWindow.xaml.cs">
       <DependentUpon>AddressBarWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LockScreen.xaml.cs">
+      <DependentUpon>LockScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LeftClock.xaml.cs">
+      <DependentUpon>LeftClock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Options.xaml.cs">
       <DependentUpon>Options.xaml</DependentUpon>
@@ -200,9 +203,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\AddressBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LockScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\LeftClock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
@@ -242,13 +257,15 @@
     <Resource Include="Resources\pin_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppIcons\bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="AppIcons\iexplore.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="AppIcons\opera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\user.png" />
     <Resource Include="Images\appbar.questionmark.rest.png" />
     <Resource Include="Images\appbar.sync.rest.png" />
     <Resource Include="Resources\share_icon.png" />
@@ -265,10 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Mosaic_TemporaryKey.pfx" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

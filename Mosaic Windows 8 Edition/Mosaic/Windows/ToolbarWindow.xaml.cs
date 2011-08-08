@@ -1,29 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Windows;
-using System.Windows.Interop;
-using Screen = System.Windows.Forms.Screen;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using Mosaic.Base;
 using Mosaic.Controls;
 using Mosaic.Core;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Windows.Navigation;
-using System.Windows.Threading;
-using Path = System.Windows.Shapes.Path;
 
 namespace Mosaic.Windows
 {
@@ -34,8 +18,8 @@ namespace Mosaic.Windows
     {
         //private readonly int totalWorkingAreaWidth = 0;
         private bool isOpened;
+
         public ToolbarWindow()
-       
         {
             if (!App.Settings.IsExclusiveMode)
             {
@@ -74,7 +58,7 @@ namespace Mosaic.Windows
             //}
             //else
             //{
-            //    //there's only one screen 
+            //    //there's only one screen
             //    totalWorkingAreaWidth = !object.Equals(primaryScreen, null) ? primaryScreen.Bounds.Width : (int)SystemParameters.PrimaryScreenWidth;
             //}
 
@@ -83,9 +67,9 @@ namespace Mosaic.Windows
 
             InitializeComponent();
         }
+
         private void LoadUserPicFromCache()
         {
-       
             var ms = new MemoryStream();
             var stream = new FileStream(E.Root + "\\Cache\\user.png", FileMode.Open, FileAccess.Read);
             ms.SetLength(stream.Length);
@@ -131,8 +115,18 @@ namespace Mosaic.Windows
             //    ItemsHost.Children.Add(item);
             //}
 
-            var s = Resources["ToolbarCloseAnim"] as Storyboard;
-            ((DoubleAnimation)s.Children[0]).To = SystemParameters.PrimaryScreenWidth - 1;
+            try
+            {
+                var s = Resources["ToolbarCloseAnim"] as Storyboard;
+                ((DoubleAnimation)s.Children[0]).To = SystemParameters.PrimaryScreenWidth - 1;
+                s.BeginTime = TimeSpan.FromMilliseconds(800);
+                s.Begin();
+                s.BeginTime = TimeSpan.FromMilliseconds(300);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             //((DoubleAnimation)s.Children[0]).To = totalWorkingAreaWidth - 1;
 
             //var handle = new WindowInteropHelper(this).Handle;
@@ -151,17 +145,21 @@ namespace Mosaic.Windows
             //    this.Height = screen.WorkingArea.Height;
             //}
 
-            s.BeginTime = TimeSpan.FromMilliseconds(800);
-            s.Begin();
-            s.BeginTime = TimeSpan.FromMilliseconds(300);
-
             isOpened = false;
         }
 
-        void ItemMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        DateTime mouseclicktimestamp = DateTime.Now;
+
+        private void ItemMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            int timediff = (int)DateTime.Now.Subtract(mouseclicktimestamp).TotalMilliseconds;
+            mouseclicktimestamp = DateTime.Now;
+            if (timediff < E.AnimationTimePrecision)
+            { return; }
+
             if (mouseX != e.GetPosition(this).X || mouseY != e.GetPosition(this).Y)
                 return;
+
             var name = ((ToolbarItem)sender).Title;
             if (App.WidgetManager.IsWidgetLoaded(name))
                 App.WidgetManager.UnloadWidget(name);
@@ -180,8 +178,9 @@ namespace Mosaic.Windows
             {
                 Open();
             }
-
         }
+
+        private LeftClock lc = null;
 
         public void Open()
         {
@@ -190,25 +189,29 @@ namespace Mosaic.Windows
             //((DoubleAnimation)s.Children[0]).To = totalWorkingAreaWidth - 120;
 
             s.Begin();
-          
+
             isOpened = true;
-           
-            
+            lc = new LeftClock();
+            lc.Show();
         }
 
         public void CloseToolbar()
         {
             var s = Resources["ToolbarCloseAnim"] as Storyboard;
-            ((DoubleAnimation)s.Children[0]).To = SystemParameters.PrimaryScreenWidth - 1; 
+            ((DoubleAnimation)s.Children[0]).To = SystemParameters.PrimaryScreenWidth - 1;
             //((DoubleAnimation)s.Children[0]).To = totalWorkingAreaWidth - 1;
 
             s.Begin();
 
-          
             isOpened = false;
-
+            iFr.Helper.Animate(lc, OpacityProperty, 200, 0);
+            iFr.Helper.Delay(new Action(() =>
+            {
+                lc.Close();
+                lc = null;
+            }), 200);
         }
-       
+
         private void ExitButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Application.Current.MainWindow.Close();
@@ -218,6 +221,7 @@ namespace Mosaic.Windows
         {
             App.ShowOptions();
         }
+
         private void StartButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             foreach (var window in App.Current.Windows)
@@ -226,6 +230,16 @@ namespace Mosaic.Windows
                     continue;
                 ((Window)window).Activate();
                 ((Window)window).Show();
+            }
+            try
+            {
+                foreach (WidgetControl c in ((MainWindow)App.Current.MainWindow).runningWidgets)
+                {
+                    iFr.Helper.Animate(c, OpacityProperty, 250, 0, 1);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -247,13 +261,11 @@ namespace Mosaic.Windows
                 item.MouseLeftButtonUp += ItemMouseLeftButtonUp;
                 WidgetsList.Children.Add(item);
             }
-
-            
-
         }
 
         private double mouseX, mouseY;
-        void ItemMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void ItemMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             mouseX = e.GetPosition(this).X;
             mouseY = e.GetPosition(this).Y;

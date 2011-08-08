@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using Mosaic.Base;
 using Mosaic.Core;
 
@@ -87,6 +76,7 @@ namespace Mosaic.Controls
             {*/
             var s = Resources["LoadAnim"] as Storyboard;
             s.Begin();
+            iFr.Helper.Delay(new Action(() => { iFr.Helper.Animate(this, OpacityProperty, 1000, 1); }), s.BeginTime.HasValue ? s.BeginTime.Value.TotalMilliseconds : 0);
 
             if (WidgetProxy.WidgetType == WidgetType.Generated)
             {
@@ -110,29 +100,29 @@ namespace Mosaic.Controls
             //}
         }
 
-        void RefreshItemClick(object sender, RoutedEventArgs e)
+        private void RefreshItemClick(object sender, RoutedEventArgs e)
         {
             WidgetProxy.WidgetComponent.Refresh();
         }
 
-        void RemoveItemClick(object sender, RoutedEventArgs e)
+        private void RemoveItemClick(object sender, RoutedEventArgs e)
         {
             removeItem.Click -= RemoveItemClick;
             App.WidgetManager.UnloadWidget(WidgetProxy);
         }
 
-        void WidgetControlMouseMove(object sender, MouseEventArgs e)
+        private void WidgetControlMouseMove(object sender, MouseEventArgs e)
         {
             this.RaiseEvent(e);
         }
 
-        void WidgetControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void WidgetControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MousePressed = false;
             this.RaiseEvent(e);
         }
 
-        void WidgetControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void WidgetControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MousePressed = true;
             this.RaiseEvent(e);
@@ -154,20 +144,20 @@ namespace Mosaic.Controls
 
         private void StoryboardCompleted(object sender, EventArgs e)
         {
-            Opacity = 1;
+            //Opacity = 1;
         }
 
-      private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void UserControlMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
                 //Ctrl key is down
-            var s = Resources["MouseDownAnim"] as Storyboard;
-            s.Begin();
-            MousePressed = true;
-            Keyboard.Focus(this);
-            FocusManager.SetFocusedElement(this, this);
-            var a = Keyboard.FocusedElement;
+                var s = Resources["MouseDownAnim"] as Storyboard;
+                s.Begin();
+                MousePressed = true;
+                Keyboard.Focus(this);
+                FocusManager.SetFocusedElement(this, this);
+                var a = Keyboard.FocusedElement;
             }
         }
 
@@ -176,8 +166,7 @@ namespace Mosaic.Controls
             var s = Resources["MouseUpAnim"] as Storyboard;
             s.Begin();
             MousePressed = false;
-
-        } 
+        }
 
         private void UserControlMouseLeave(object sender, MouseEventArgs e)
         {

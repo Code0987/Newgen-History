@@ -10,15 +10,17 @@ namespace Mosaic.Controls
     public class DragScrollViewer : ScrollViewer
     {
         public event EventHandler DragFinished;
+
         public bool IsDragging { get { return _isDragging; } }
+
         public bool DragEverywhere { get; set; }
 
         public DragScrollViewer()
         {
-
         }
 
         private double _friction = DEFAULT_FRICTION;
+
         public double Friction
         {
             get
@@ -34,7 +36,6 @@ namespace Mosaic.Controls
         private Point _previousPreviousPoint;
         private Point _previousPoint;
         private Point _currentPoint;
-
 
         private bool _mouseDown = false;
         private bool _isDragging = false;
@@ -68,6 +69,7 @@ namespace Mosaic.Controls
 
         private object mouseDownSource;
         private Point mouseDownCoords;
+
         protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             if (e.Source.GetType() != typeof(DragScrollViewer) && !DragEverywhere)
@@ -93,7 +95,7 @@ namespace Mosaic.Controls
             if (_mouseDown && !_isDragging)
             {
                 _isDragging = true;
-                DragScroll(); 
+                DragScroll();
                 e.Handled = true;
             }
         }
@@ -126,7 +128,6 @@ namespace Mosaic.Controls
             Cursor = Cursors.Arrow;
         }
 
-
         protected void DragScroll()
         {
             if (_dragScrollTimer == null)
@@ -138,15 +139,21 @@ namespace Mosaic.Controls
             }
         }
 
+        private FrameworkElement hscroll;
+
         private void TickDragScroll(object sender, EventArgs e)
         {
+            try { if (hscroll == null) { hscroll = this.Template.FindName("PART_HorizontalScrollBar", this) as FrameworkElement; } }
+            catch { }
             if (_isDragging)
             {
                 if (VerticalScrollBarVisibility == ScrollBarVisibility.Disabled)
                     Cursor = Cursors.SizeWE;
                 if (HorizontalScrollBarVisibility == ScrollBarVisibility.Disabled)
                     Cursor = Cursors.SizeNS;
-                //HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+                if (hscroll != null)
+                { iFr.Helper.Animate(this.hscroll, OpacityProperty, 250, 1); }
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
                 GeneralTransform generalTransform = this.TransformToVisual(this);
                 Point childToParentCoordinates = generalTransform.Transform(new Point(0, 0));
                 Rect bounds = new Rect(childToParentCoordinates, this.RenderSize);
@@ -169,6 +176,9 @@ namespace Mosaic.Controls
                 PerformScroll(Momentum);
                 /*if (Momentum.Length < 0.1)
                     VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;*/
+                if (hscroll != null)
+                { iFr.Helper.Animate(hscroll, OpacityProperty, 250, 0); }
+                iFr.Helper.Delay(new Action(() => { HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden; }), 250);
             }
             else
             {
@@ -180,6 +190,9 @@ namespace Mosaic.Controls
                     _dragScrollTimer.Stop();
                     _dragScrollTimer = null;
                     //VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                    if (hscroll != null)
+                    { iFr.Helper.Animate(hscroll, OpacityProperty, 250, 0); }
+                    iFr.Helper.Delay(new Action(() => { HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden; }), 250);
                 }
             }
         }
@@ -205,8 +218,8 @@ namespace Mosaic.Controls
         private const double MINIMUM_FRICTION = 0.0;
         private const double MAXIMUM_FRICTION = 1.0;
 
-
         private Vector Momentum { get; set; }
+
         private Vector Velocity
         {
             get
@@ -214,6 +227,7 @@ namespace Mosaic.Controls
                 return new Vector(_currentPoint.X - _previousPoint.X, _currentPoint.Y - _previousPoint.Y);
             }
         }
+
         // Using PreviousVelocity gives a smoother, better feeling as it leaves out any last frame momentum changes
         private Vector PreviousVelocity
         {
@@ -226,6 +240,7 @@ namespace Mosaic.Controls
         private class Vector
         {
             public double Length { get { return Math.Sqrt(X * X + Y * Y); } }
+
             public Vector(double x, double y)
             {
                 X = x;
@@ -238,8 +253,8 @@ namespace Mosaic.Controls
             }
 
             public double X { get; set; }
-            public double Y { get; set; }
 
+            public double Y { get; set; }
         }
     }
 }

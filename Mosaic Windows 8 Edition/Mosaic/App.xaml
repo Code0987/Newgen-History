@@ -10,7 +10,9 @@
                 <ResourceDictionary Source="/Mosaic.Base;component/Resources/Colors.xaml"/>
                 <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroCheckBox.xaml"/>
                 <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroComboBox.xaml"/>
+                <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroTextBox.xaml"/>
                 <ResourceDictionary Source="/Mosaic.Base;component/Resources/MetroButton.xaml"/>
+                <ResourceDictionary Source="Themes/Generic.xaml"/>
                 <ResourceDictionary>
                     <!-- Simple TextBox -->
                     <Style x:Key="SimpleTextBox" TargetType="{x:Type TextBox}">
