@@ -138,16 +138,19 @@ namespace Mosaic.Windows
             control.Load();
             PlaceWidget(control);
             WidgetHost.Children.Add(control);
-            if (!widget.Path.StartsWith("http://"))
+            if (widget.WidgetComponent != null)
             {
-                if (App.Settings.IsAppWidgetBgStatic)
+                if (widget.WidgetComponent.GetType() == typeof(Mosaic.Core.MosaicAppWidget))
                 {
-                    try
+                    if (App.Settings.IsAppWidgetBgStatic)
                     {
-                        control.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Settings.AppWidgetBackgroundColor));
-                    }
-                    catch (Exception)
-                    {
+                        try
+                        {
+                            control.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Settings.AppWidgetBackgroundColor));
+                        }
+                        catch (Exception)
+                        {
+                        }
                     }
                 }
             }

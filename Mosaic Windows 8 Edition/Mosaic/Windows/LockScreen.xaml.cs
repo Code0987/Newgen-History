@@ -76,13 +76,16 @@ namespace Mosaic.Windows
 
             this.Visibility = Visibility.Collapsed;
 
-            iFr.Helper.RunFor(new Action(() =>
- {
-     if ((int)Win32.GetIdleTime() >= (App.Settings.LockScreenTime * 60 * 1000))
-     {
-         Lock();
-     }
- }), -1, 2000);
+            if (App.Settings.LockScreenTime != -1)
+            {
+                iFr.Helper.RunFor(new Action(() =>
+                {
+                    if ((int)Win32.GetIdleTime() >= (App.Settings.LockScreenTime * 60 * 1000))
+                    {
+                        Lock();
+                    }
+                }), -1, 2000);
+            }
         }
 
         private void UpdateWallpaper()

@@ -127,10 +127,13 @@ namespace Mosaic.Windows
             {
                 foreach (WidgetControl c in ((MainWindow)App.Current.MainWindow).runningWidgets)
                 {
-                    if (!c.WidgetProxy.Path.StartsWith("http://"))
+                    if (c.WidgetProxy.WidgetComponent != null)
                     {
-                        c.Background = new SolidColorBrush(color);
-                        c.InvalidateVisual();
+                        if (c.WidgetProxy.WidgetComponent.GetType() == typeof(Mosaic.Core.MosaicAppWidget))
+                        {
+                            c.Background = new SolidColorBrush(color);
+                            c.InvalidateVisual();
+                        }
                     }
                 }
             }
