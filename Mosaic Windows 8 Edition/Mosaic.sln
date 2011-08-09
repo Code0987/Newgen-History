@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "Widgets\Store\Stor
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 15
+		SccNumberOfProjects = 18
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs30
 		SccLocalPath0 = .
@@ -95,6 +95,18 @@ Global
 		SccProjectTopLevelParentUniqueName14 = Mosaic.sln
 		SccProjectName14 = Widgets/Weather
 		SccLocalPath14 = Widgets\\Weather
+		SccProjectUniqueName15 = Widgets\\Music\\Music.csproj
+		SccProjectTopLevelParentUniqueName15 = Mosaic.sln
+		SccProjectName15 = Widgets/Music
+		SccLocalPath15 = Widgets\\Music
+		SccProjectUniqueName16 = Widgets\\Applications\\Applications.csproj
+		SccProjectTopLevelParentUniqueName16 = Mosaic.sln
+		SccProjectName16 = Widgets/Applications
+		SccLocalPath16 = Widgets\\Applications
+		SccProjectUniqueName17 = Widgets\\Store\\Store.csproj
+		SccProjectTopLevelParentUniqueName17 = Mosaic.sln
+		SccProjectName17 = Widgets/Store
+		SccLocalPath17 = Widgets\\Store
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
