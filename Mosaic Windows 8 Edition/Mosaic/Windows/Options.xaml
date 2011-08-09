@@ -22,7 +22,7 @@
         </Grid>
         <TabControl Margin="150,-20,0,0" Background="Transparent" BorderThickness="0">
             <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static Properties:Resources.OptionsGeneralTabHeader}">
-                <ScrollViewer HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <ScrollViewer HorizontalAlignment="Left" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <DockPanel>
                         <StackPanel Margin="10" Orientation="Vertical">
                             <TextBlock TextOptions.TextFormattingMode="Ideal" Margin="0,0,0,0" FontSize="30" FontWeight="Light" Foreground="{StaticResource OptionsBigHeaderColor}" Text="{x:Static Properties:Resources.OptionsUI}" />
@@ -42,9 +42,11 @@
                                 <Rectangle Height="48" Margin="0,3,0,0" Width="48" Fill="Red" HorizontalAlignment="Left" Name="MosaicBgColor" Stroke="LightGray" StrokeThickness="2" />
                                 <Button Style="{StaticResource MetroButton}" Height="36" Margin="7,0,7,0" Width="125" Click="ChangeBgColorButtonClick" Content="{x:Static Properties:Resources.OptionsChangeBg}" HorizontalAlignment="Left" Name="ChangeBgColorButton" />
                             </DockPanel>
+                            <TextBlock Margin="0,5,0,0" FontSize="16" Foreground="White" Text="{x:Static Properties:Resources.OptionsBgAlpha}" />
+                            <Slider Margin="0,5,0,10" Name="BgColorAlpha" LargeChange="5" Maximum="255" Minimum="1" SmallChange="1" Value="255" />
                             <DockPanel>
                                 <TextBlock Margin="0,5,0,0" FontSize="16" Foreground="White" Text="{x:Static Properties:Resources.OptionsLockScreenTime}" />
-                                <TextBox Style="{StaticResource MetroTextBox}" Foreground="Black" MaxWidth="100" Name="ValLockTime" Text="" TextChanged="ValLockTime_TextChanged" />
+                                <TextBox Style="{StaticResource MetroTextBox}" Foreground="Black" MinWidth="40" Name="ValLockTime" Text="" TextChanged="ValLockTime_TextChanged" />
                             </DockPanel>
                         </StackPanel>
                         <StackPanel Margin="10" Orientation="Vertical">

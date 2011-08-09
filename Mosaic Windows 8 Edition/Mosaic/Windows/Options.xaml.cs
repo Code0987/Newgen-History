@@ -60,6 +60,8 @@ namespace Mosaic.Windows
             EnableUserTile.IsChecked = App.Settings.IsUserTileEnabled;
             CheckBox_DragEW.IsChecked = App.Settings.DragEverywhere;
             MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
+            BgColorAlpha.ValueChanged += new RoutedPropertyChangedEventHandler<double>(BgColorAlpha_ValueChanged);
+            BgColorAlpha.Value = (double)(int)E.BackgroundColor.A;
             EnableStaticAppWidgetBg.IsChecked = App.Settings.IsAppWidgetBgStatic;
             try
             {
@@ -115,7 +117,11 @@ namespace Mosaic.Windows
             App.Settings.EnableThumbnailsBar = (bool)EnableThumbBarCheckBox.IsChecked;
             App.Settings.DragEverywhere = (bool)CheckBox_DragEW.IsChecked;
             App.Settings.IsUserTileEnabled = (bool)EnableUserTile.IsChecked;
-            App.Settings.LockScreenTime = Convert.ToInt32(ValLockTime.Text);
+
+            if (string.IsNullOrEmpty(ValLockTime.Text) || string.IsNullOrWhiteSpace(ValLockTime.Text))
+            { App.Settings.LockScreenTime = -1; }
+            else { Convert.ToInt32(ValLockTime.Text); }
+
             var color = ((SolidColorBrush)this.AppWidgetBgColor.Fill).Color;
             App.Settings.AppWidgetBackgroundColor = color.ToString();
 
@@ -235,6 +241,7 @@ namespace Mosaic.Windows
                 App.Settings.BackgroundColor = color.ToString();
                 E.BackgroundColor = color;
                 MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
+                BgColorAlpha.Value = (double)(int)color.A;
                 if (App.Settings.IsExclusiveMode)
                 {
                     var window = (MainWindow)App.Current.MainWindow;
@@ -256,6 +263,11 @@ namespace Mosaic.Windows
         {
             try
             {
+                if (string.IsNullOrEmpty(ValLockTime.Text) || string.IsNullOrWhiteSpace(ValLockTime.Text))
+                {
+                    return;
+                }
+
                 int anInteger;
                 anInteger = Convert.ToInt32(ValLockTime.Text);
                 anInteger = int.Parse(ValLockTime.Text);
@@ -263,6 +275,20 @@ namespace Mosaic.Windows
             catch (Exception ex)
             {
                 ValLockTime.Text = App.Settings.LockScreenTime.ToString();
+            }
+        }
+
+        private void BgColorAlpha_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Color c = (Color)ColorConverter.ConvertFromString(App.Settings.BackgroundColor);
+            var color = Color.FromArgb((byte)e.NewValue, c.R, c.G, c.B);
+            App.Settings.BackgroundColor = color.ToString();
+            E.BackgroundColor = color;
+            MosaicBgColor.Fill = new SolidColorBrush(E.BackgroundColor);
+            if (App.Settings.IsExclusiveMode)
+            {
+                var window = (MainWindow)App.Current.MainWindow;
+                window.Background = new SolidColorBrush(E.BackgroundColor);
             }
         }
     }

@@ -144,6 +144,9 @@
   <data name="OptionsPassword" xml:space="preserve">
     <value>Password:</value>
   </data>
+  <data name="OptionsRefresh" xml:space="preserve">
+    <value>Refresh interval (in seconds):</value>
+  </data>
   <data name="OptionsUsername" xml:space="preserve">
     <value>User name:</value>
   </data>

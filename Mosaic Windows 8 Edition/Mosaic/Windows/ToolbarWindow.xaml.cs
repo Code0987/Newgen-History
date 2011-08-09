@@ -204,12 +204,15 @@ namespace Mosaic.Windows
             s.Begin();
 
             isOpened = false;
-            iFr.Helper.Animate(lc, OpacityProperty, 200, 0);
-            iFr.Helper.Delay(new Action(() =>
+            if (lc != null)
             {
-                lc.Close();
-                lc = null;
-            }), 200);
+                iFr.Helper.Animate(lc, OpacityProperty, 200, 0);
+                iFr.Helper.Delay(new Action(() =>
+                {
+                    lc.Close();
+                    lc = null;
+                }), 200);
+            }
         }
 
         private void ExitButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

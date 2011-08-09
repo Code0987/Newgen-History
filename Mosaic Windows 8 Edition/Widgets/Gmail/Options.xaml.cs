@@ -33,6 +33,7 @@ namespace Gmail
 
             UsernameBox.Text = iFr.Helper.Decrypt(Widget.Settings.Username);
             PassBox.Password = iFr.Helper.Decrypt(Widget.Settings.Password);
+            RefreshTime.Text = Widget.Settings.RefreshInterval.ToString();
         }
 
         private void OkButtonClick(object sender, RoutedEventArgs e)
@@ -60,6 +61,7 @@ namespace Gmail
         {
             Widget.Settings.Username = iFr.Helper.Encrypt(UsernameBox.Text);
             Widget.Settings.Password = iFr.Helper.Encrypt(PassBox.Password);
+            Widget.Settings.RefreshInterval = Convert.ToInt32(RefreshTime.Text);
 
             Widget.Settings.Save(E.WidgetsRoot + "\\Gmail\\Gmail.config");
             if (UpdateSettings != null)
@@ -79,6 +81,25 @@ namespace Gmail
         private void BackButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+
+        private void RefreshTime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(RefreshTime.Text) || string.IsNullOrWhiteSpace(RefreshTime.Text))
+                {
+                    return;
+                }
+
+                int anInteger;
+                anInteger = Convert.ToInt32(RefreshTime.Text);
+                anInteger = int.Parse(RefreshTime.Text);
+            }
+            catch (Exception ex)
+            {
+                RefreshTime.Text = Widget.Settings.RefreshInterval.ToString();
+            }
         }
     }
 }

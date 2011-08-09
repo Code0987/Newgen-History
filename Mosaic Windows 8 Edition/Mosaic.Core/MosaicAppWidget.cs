@@ -85,7 +85,13 @@ namespace Mosaic.Core
 
         private void RootMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            WinAPI.ShellExecute(IntPtr.Zero, "open", file, null, null, 3);
+            try
+            {
+                WinAPI.ShellExecute(IntPtr.Zero, "open", file, null, null, 3);
+            }
+            catch
+            {
+            }
         }
 
         private MemoryStream iconStream;

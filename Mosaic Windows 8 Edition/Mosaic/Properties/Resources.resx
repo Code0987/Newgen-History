@@ -141,6 +141,9 @@
   <data name="OptionsBg" xml:space="preserve">
     <value>Background color:</value>
   </data>
+  <data name="OptionsBgAlpha" xml:space="preserve">
+    <value>Background color transparency:</value>
+  </data>
   <data name="OptionsCancelButton" xml:space="preserve">
     <value>cancel</value>
   </data>
@@ -175,7 +178,7 @@
     <value>Language</value>
   </data>
   <data name="OptionsLockScreenTime" xml:space="preserve">
-    <value>Lock screen time (in minutes):</value>
+    <value>Lock screen time (in minutes) (use blank for no screen):</value>
   </data>
   <data name="OptionsOkButton" xml:space="preserve">
     <value>ok</value>

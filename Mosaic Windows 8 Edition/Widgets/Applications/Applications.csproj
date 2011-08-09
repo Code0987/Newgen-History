@@ -38,8 +38,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\..\Ref\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>..\..\Ref\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="Mosaic.Base">
-      <HintPath>..\..\bin\Debug\Mosaic.Base.dll</HintPath>
+      <HintPath>..\..\Mosaic.Base\bin\Debug\Mosaic.Base.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mosaic.Core">
@@ -61,6 +67,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WmpWrapper">
+      <HintPath>..\..\Ref\WmpWrapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HubControl.xaml.cs">

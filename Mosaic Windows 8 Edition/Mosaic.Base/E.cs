@@ -33,10 +33,10 @@ namespace Mosaic.Base
 
         static E()
         {
-            TileSpacing = 4;
+            TileSpacing = 8;
             Margin = new Thickness(0, 0, 0, 0);
             MinTileHeight = 180;
-            MinTileWidth = 180;
+            MinTileWidth = 230;
 
             Root = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             WidgetsRoot = Root + "\\Widgets";

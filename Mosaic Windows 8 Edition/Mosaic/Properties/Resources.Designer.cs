@@ -133,6 +133,15 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background color transparency:.
+        /// </summary>
+        public static string OptionsBgAlpha {
+            get {
+                return ResourceManager.GetString("OptionsBgAlpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cancel.
         /// </summary>
         public static string OptionsCancelButton {
@@ -232,7 +241,7 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lock screen time (in minutes):.
+        ///   Looks up a localized string similar to Lock screen time (in minutes) (use blank for no screen):.
         /// </summary>
         public static string OptionsLockScreenTime {
             get {

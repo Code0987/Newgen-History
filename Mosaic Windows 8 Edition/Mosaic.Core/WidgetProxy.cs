@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Windows;
 using Mosaic.Base;
 
 namespace Mosaic.Core
@@ -12,14 +9,21 @@ namespace Mosaic.Core
     {
         public readonly string Path;
         private Assembly assembly;
+
         public MosaicWidget WidgetComponent { get; private set; }
+
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public bool IsLoaded { get; private set; }
+
         public string Name { get; private set; }
+
         public bool HasErrors { get; private set; }
+
         public int Column { get; set; }
+
         public int Row { get; set; }
+
         public WidgetType WidgetType { get; set; }
 
         public WidgetProxy(string path, string name = null, bool isHtml = false, bool isGenerated = false, bool isSocial = false)
@@ -97,7 +101,7 @@ namespace Mosaic.Core
             else
                 WidgetComponent = new MosaicAppWidget();
             WidgetType = WidgetType.Generated;
-            Name = string.Empty;
+            Name = WidgetComponent.Name;
         }
 
         private void InitializeSocial()
@@ -105,7 +109,6 @@ namespace Mosaic.Core
             WidgetComponent = new MosaicFriendWidget();
             WidgetType = WidgetType.Generated;
         }
-
 
         public void Load()
         {
@@ -121,7 +124,11 @@ namespace Mosaic.Core
 
         public void Unload()
         {
-            WidgetComponent.Unload();
+            try
+            {
+                WidgetComponent.Unload();
+            }
+            catch { }
             IsLoaded = false;
         }
     }

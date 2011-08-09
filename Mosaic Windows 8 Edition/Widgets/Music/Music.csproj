@@ -38,8 +38,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\..\Ref\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>..\..\..\..\..\Mosaic\Mosaic Build 272 alpha\Widgets\Pictures\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <HintPath>..\..\Ref\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,7 +58,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WmpWrapper">
-      <HintPath>..\..\..\htchome\MetroHome 2\bin\Debug\Widgets\Music\WmpWrapper.dll</HintPath>
+      <HintPath>..\..\Ref\WmpWrapper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
