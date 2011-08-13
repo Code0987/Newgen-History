@@ -79,7 +79,7 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About Mosaic.
+        ///   Looks up a localized string similar to About Mosaic Windows 8 Edition.
         /// </summary>
         public static string OptionsAbout {
             get {
@@ -88,7 +88,7 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mosaic uses Awesomium web-browser framework. Awesomium is a trademark of Khrona LLC © 2011 Khrona LLC.
+        ///   Looks up a localized string similar to Mosaic Windows 8 Edition uses Awesomium web-browser framework. Awesomium is a trademark of Khrona LLC © 2011 Khrona LLC.
         /// </summary>
         public static string OptionsAboutAwesomium {
             get {
@@ -142,6 +142,33 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background image:.
+        /// </summary>
+        public static string OptionsBgImg {
+            get {
+                return ResourceManager.GetString("OptionsBgImg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select image.
+        /// </summary>
+        public static string OptionsBgImgSelect {
+            get {
+                return ResourceManager.GetString("OptionsBgImgSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use image in backgound.
+        /// </summary>
+        public static string OptionsBgImgUse {
+            get {
+                return ResourceManager.GetString("OptionsBgImgUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cancel.
         /// </summary>
         public static string OptionsCancelButton {
@@ -187,6 +214,15 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start Mosaic when Windows loads.
+        /// </summary>
+        public static string OptionsEnableAutoStart {
+            get {
+                return ResourceManager.GetString("OptionsEnableAutoStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable windows thumbnails bar.
         /// </summary>
         public static string OptionsEnableThumbBar {
@@ -223,7 +259,7 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Options.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string OptionsItem {
             get {
@@ -385,6 +421,15 @@ namespace Mosaic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tiles.
+        /// </summary>
+        public static string TilesItem {
+            get {
+                return ResourceManager.GetString("TilesItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to what&apos;s new?.
         /// </summary>
         public static string WhatsNew {
@@ -399,15 +444,6 @@ namespace Mosaic.Properties {
         public static string WidgetInvisible {
             get {
                 return ResourceManager.GetString("WidgetInvisible", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Widgets....
-        /// </summary>
-        public static string WidgetsItem {
-            get {
-                return ResourceManager.GetString("WidgetsItem", resourceCulture);
             }
         }
     }

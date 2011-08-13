@@ -110,8 +110,8 @@ namespace Mosaic.Windows
                     ThumbsList.Children.Add(t);
 
                     var thumb = new Thumbnail();
-                    thumb.Width = 150;
-                    thumb.Height = 150;
+                    thumb.Width = 120;
+                    thumb.Height = 120;
                     thumb.Source = current;
                     ThumbsList.Children.Add(thumb);
                 }

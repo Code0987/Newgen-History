@@ -10,7 +10,6 @@ using System.Windows.Media;
 using Microsoft.Win32;
 using Mosaic.Base;
 using Mosaic.Core;
-using Mosaic.Windows;
 
 namespace Mosaic
 {
@@ -24,9 +23,9 @@ namespace Mosaic
         public static WindowManager WindowManager;
         public static WidgetManager WidgetManager;
         public static Settings Settings;
-        public static Options OptionsWindow;
+        public static Windows.Settings SettingsWindow;
 
-        string root = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static string Root = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public App()
         {
@@ -36,10 +35,10 @@ namespace Mosaic
             AppDomain.CurrentDomain.UnhandledException +=
                       new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-            if (!Directory.Exists(root + "\\Logs"))
-                Directory.CreateDirectory(root + "\\Logs");
-            if (!File.Exists(root + "\\Logs\\ErrorLog.txt"))
-                File.Create(root + "\\Logs\\ErrorLog.txt");
+            if (!Directory.Exists(Root + "\\Logs"))
+                Directory.CreateDirectory(Root + "\\Logs");
+            if (!File.Exists(Root + "\\Logs\\ErrorLog.txt"))
+                File.Create(Root + "\\Logs\\ErrorLog.txt");
         }
 
         private void ApplicationStartup(object sender, StartupEventArgs e)
@@ -117,25 +116,25 @@ namespace Mosaic
 
         public static void ShowOptions()
         {
-            if (OptionsWindow != null && OptionsWindow.IsVisible)
+            if (SettingsWindow != null && SettingsWindow.IsVisible)
             {
-                OptionsWindow.Activate();
+                SettingsWindow.Activate();
                 return;
             }
 
-            OptionsWindow = new Options();
+            SettingsWindow = new Windows.Settings();
             //optionsWindow.UpdateSettings += OptionsWindowUpdateSettings;
 
             if (App.Settings.Language == "he-IL" || App.Settings.Language == "ar-SA")
             {
-                OptionsWindow.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+                SettingsWindow.FlowDirection = System.Windows.FlowDirection.RightToLeft;
             }
             else
             {
-                OptionsWindow.FlowDirection = System.Windows.FlowDirection.LeftToRight;
+                SettingsWindow.FlowDirection = System.Windows.FlowDirection.LeftToRight;
             }
 
-            OptionsWindow.ShowDialog();
+            SettingsWindow.ShowDialog();
         }
 
         private void ApplicationDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -164,7 +163,7 @@ namespace Mosaic
                 }
                 sb.AppendLine("----------------------------------------------------------------");
 
-                File.AppendAllText(root + "\\Logs\\ErrorLog.txt", sb.ToString());
+                File.AppendAllText(Root + "\\Logs\\ErrorLog.txt", sb.ToString());
             }
             catch { }
 
@@ -195,7 +194,7 @@ namespace Mosaic
                 }
                 sb.AppendLine("----------------------------------------------------------------");
 
-                File.AppendAllText(root + "\\Logs\\ErrorLog.txt", sb.ToString());
+                File.AppendAllText(Root + "\\Logs\\ErrorLog.txt", sb.ToString());
             }
             catch { }
         }

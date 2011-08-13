@@ -124,10 +124,10 @@
     <value>Exit Mosaic</value>
   </data>
   <data name="OptionsAbout" xml:space="preserve">
-    <value>About Mosaic</value>
+    <value>About Mosaic Windows 8 Edition</value>
   </data>
   <data name="OptionsAboutAwesomium" xml:space="preserve">
-    <value>Mosaic uses Awesomium web-browser framework. Awesomium is a trademark of Khrona LLC © 2011 Khrona LLC</value>
+    <value>Mosaic Windows 8 Edition uses Awesomium web-browser framework. Awesomium is a trademark of Khrona LLC © 2011 Khrona LLC</value>
   </data>
   <data name="OptionsAboutIcons" xml:space="preserve">
     <value>Some icons provided by The Noun Project.</value>
@@ -144,6 +144,15 @@
   <data name="OptionsBgAlpha" xml:space="preserve">
     <value>Background color transparency:</value>
   </data>
+  <data name="OptionsBgImg" xml:space="preserve">
+    <value>Background image:</value>
+  </data>
+  <data name="OptionsBgImgSelect" xml:space="preserve">
+    <value>select image</value>
+  </data>
+  <data name="OptionsBgImgUse" xml:space="preserve">
+    <value>Use image in backgound</value>
+  </data>
   <data name="OptionsCancelButton" xml:space="preserve">
     <value>cancel</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="OptionsEnableAnimation" xml:space="preserve">
     <value>Enable widget animation</value>
   </data>
+  <data name="OptionsEnableAutoStart" xml:space="preserve">
+    <value>Start Mosaic when Windows loads</value>
+  </data>
   <data name="OptionsEnableThumbBar" xml:space="preserve">
     <value>Enable windows thumbnails bar</value>
   </data>
@@ -172,7 +184,7 @@
     <value>general</value>
   </data>
   <data name="OptionsItem" xml:space="preserve">
-    <value>Options</value>
+    <value>Settings</value>
   </data>
   <data name="OptionsLanguage" xml:space="preserve">
     <value>Language</value>
@@ -225,13 +237,13 @@
   <data name="StartItem" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="TilesItem" xml:space="preserve">
+    <value>Tiles</value>
+  </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>what's new?</value>
   </data>
   <data name="WidgetInvisible" xml:space="preserve">
     <value>The content of this widget is visible only in fullscreen mode.</value>
-  </data>
-  <data name="WidgetsItem" xml:space="preserve">
-    <value>Widgets...</value>
   </data>
 </root>

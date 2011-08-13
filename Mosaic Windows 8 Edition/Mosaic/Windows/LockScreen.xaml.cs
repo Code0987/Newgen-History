@@ -73,6 +73,7 @@ namespace Mosaic.Windows
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += new EventHandler(TimerTick);
+            timer.Stop();
 
             this.Visibility = Visibility.Collapsed;
 

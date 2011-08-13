@@ -1,36 +1,35 @@
-﻿<Window x:Class="Mosaic.Windows.ToolbarWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Mosaic.Controls" xmlns:Properties="clr-namespace:Mosaic.Properties" x:Name="this"
-        Width="120" AllowsTransparency="True" Background="Black" Topmost="True" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
-        Loaded="WindowLoaded" MouseLeave="ToolbarMouseLeave" MouseLeftButtonUp="WindowMouseLeftButtonUp" PreviewKeyDown="WindowPreviewKeyDown">
+﻿<Window x:Class="Mosaic.Windows.ToolbarWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Mosaic.Controls" xmlns:Properties="clr-namespace:Mosaic.Properties" x:Name="this" Width="115" AllowsTransparency="True" Background="Black" Loaded="WindowLoaded" MouseLeave="ToolbarMouseLeave" MouseLeftButtonUp="WindowMouseLeftButtonUp" PreviewKeyDown="WindowPreviewKeyDown" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStyle="None">
     <Window.Resources>
         <Storyboard x:Key="ToolbarOpenAnim" BeginTime="0:0:0.05">
-            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
-            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" AccelerationRatio="0.7" DecelerationRatio="0.3" Duration="0:0:0.2" />
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" AccelerationRatio="0.5" DecelerationRatio="0.3" Duration="0:0:0.2" To="1" />
 
         </Storyboard>
         <Storyboard x:Key="ToolbarCloseAnim" BeginTime="0:0:0.3" Completed="ToolbarCloseAnimCompleted">
-            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
-            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" To="0.01" Duration="0:0:0.4" AccelerationRatio="0.5" DecelerationRatio="0.3"/>
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Left" AccelerationRatio="0.7" DecelerationRatio="0.3" Duration="0:0:0.2" />
+            <DoubleAnimation Storyboard.TargetName="this" Storyboard.TargetProperty="Opacity" AccelerationRatio="0.5" DecelerationRatio="0.3" Duration="0:0:0.4" To="0.01" />
 
         </Storyboard>
     </Window.Resources>
     <Grid>
         <StackPanel Name="Toolbar" VerticalAlignment="Center">
-            <Controls:ToolbarItem x:Name="WidgetsButton" Icon="/Resources/widgets_icon.png" Title="{x:Static Properties:Resources.WidgetsItem}" MouseLeftButtonUp="WidgetsButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="PinWebButton" Icon="/Resources/pinweb_icon.png" Title="{x:Static Properties:Resources.PinWebItem}" MouseLeftButtonUp="PinWebButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="PinAppButton" Icon="/Resources/pin_icon.png" Title="{x:Static Properties:Resources.PinAppItem}" MouseLeftButtonUp="PinAppButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="StartButton" Icon="/Resources/start_icon.png" Title="{x:Static Properties:Resources.StartItem}" MouseLeftButtonUp="StartButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="PeopleButton" Icon="/Resources/people_icon.png" Title="{x:Static Properties:Resources.PeopleItem}" MouseLeftButtonUp="PeopleButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="SettingsButton" Icon="/Resources/settings_icon.png" Title="{x:Static Properties:Resources.OptionsItem}" MouseLeftButtonUp="SettingsButtonMouseLeftButtonUp"/>
-            <Controls:ToolbarItem x:Name="ExitButton" Icon="/Resources/exit_icon.png" Title="{x:Static Properties:Resources.ExitItem}" MouseLeftButtonUp="ExitButtonMouseLeftButtonUp"/>
+            <Controls:ToolbarItem x:Name="TilesButton" Icon="/Mosaic;component/Resources/tiles_icon.png" MouseLeftButtonUp="TilesButtonMouseLeftButtonUp" Title="{x:Static Properties:Resources.TilesItem}" />
+            <Controls:ToolbarItem x:Name="PeopleButton" Icon="/Mosaic;component/Resources/people_icon.png" MouseLeftButtonUp="PeopleButtonMouseLeftButtonUp" Title="{x:Static Properties:Resources.PeopleItem}" />
+            <Controls:ToolbarItem x:Name="StartButton" Icon="/Mosaic;component/Resources/start_icon.png" MouseLeftButtonDown="StartButtonMouseLeftButtonDown" Title="{x:Static Properties:Resources.StartItem}" />
+            <Controls:ToolbarItem x:Name="SettingsButton" Icon="/Mosaic;component/Resources/settings_icon.png" MouseLeftButtonUp="SettingsButtonMouseLeftButtonUp" Title="{x:Static Properties:Resources.OptionsItem}" />
+            <Controls:ToolbarItem x:Name="ExitButton" Icon="/Mosaic;component/Resources/exit_icon.png" MouseLeftButtonUp="ExitButtonMouseLeftButtonUp" Title="{x:Static Properties:Resources.ExitItem}" />
 
         </StackPanel>
-        <Grid Name="WidgetsListGrid" Background="Black" Visibility="Collapsed">
-            <Controls:ToolbarItem x:Name="BackButton" VerticalAlignment="Top" Icon="/Resources/back_icon.png" Title="{x:Static Properties:Resources.BackItem}" MouseLeftButtonUp="BackButtonMouseLeftButtonUp"/>
-            <Controls:DragScrollViewer Margin="0,100,0,0" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" DragEverywhere="True">
-                <StackPanel Name="WidgetsList" VerticalAlignment="Center">
-
+        <Grid Background="Black" Name="TilesListGrid" Visibility="Collapsed">
+            <Controls:ToolbarItem Margin="0,20,0,0" x:Name="BackButton" Icon="/Resources/back_icon.png" MouseLeftButtonUp="BackButtonMouseLeftButtonUp" Title="{x:Static Properties:Resources.BackItem}" VerticalAlignment="Top" />
+            <Controls:DragScrollViewer Margin="0,100,0,0" DragEverywhere="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center">
+                        <Controls:ToolbarItem x:Name="PinWebButton" Icon="/Mosaic;component/Resources/pinweb_icon.png" MouseLeftButtonUp="PinWebButtonMouseLeftButtonUp" Title="{x:Static Properties:Resources.PinWebItem}" />
+                        <Controls:ToolbarItem x:Name="PinAppButton" Icon="/Mosaic;component/Resources/pin_icon.png" MouseLeftButtonUp="PinAppButtonMouseLeftButtonUp" Title="{x:Static Properties:Resources.PinAppItem}" />
+                    </StackPanel>
+                    <StackPanel Name="TilesList" VerticalAlignment="Center">
+                    </StackPanel>
                 </StackPanel>
             </Controls:DragScrollViewer>
         </Grid>

@@ -10,7 +10,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="Header_TitleText" Grid.Column="0" TextOptions.TextFormattingMode="Ideal" FontSize="56" FontWeight="Light" Foreground="#C8FFFFFF" HorizontalAlignment="Left" Text="Start" VerticalAlignment="Top" />
+                <TextBlock x:Name="Header_TitleText" Grid.Column="0" TextOptions.TextFormattingMode="Ideal" FontSize="56" FontWeight="Light" Foreground="#C8FFFFFF" HorizontalAlignment="Left" Text="Start" VerticalAlignment="Top"  MouseUp="Header_TitleText_MouseUp"/>
                 <Grid Grid.Column="1" x:Name="UserTile">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />

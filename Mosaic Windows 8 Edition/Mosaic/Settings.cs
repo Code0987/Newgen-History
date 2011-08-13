@@ -11,7 +11,7 @@ namespace Mosaic
             LoadedWidgets = new List<LoadedWidget>();
             Autostart = false;
             Language = CultureInfo.CurrentUICulture.Name;
-            IsExclusiveMode = false;
+            IsExclusiveMode = true;
             AnimationEnabled = true;
             ShowGrid = false;
             UseSoftwareRendering = false;
@@ -22,6 +22,7 @@ namespace Mosaic
             IsAppWidgetBgStatic = false;
             AppWidgetBackgroundColor = "#FF000000";
             LockScreenTime = -1;
+            UseBgImage = false;
         }
 
         public List<LoadedWidget> LoadedWidgets { get; set; }
@@ -51,5 +52,7 @@ namespace Mosaic
         public string AppWidgetBackgroundColor { get; set; }
 
         public int LockScreenTime { get; set; }
+
+        public bool UseBgImage { get; set; }
     }
 }

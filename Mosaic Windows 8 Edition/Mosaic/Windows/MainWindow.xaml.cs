@@ -35,6 +35,31 @@ namespace Mosaic.Windows
                 this.Background = new SolidColorBrush(E.BackgroundColor);
                 DragScroll.DragEverywhere = App.Settings.DragEverywhere;
                 //this.AllowsTransparency = false;
+
+                if (App.Settings.UseBgImage)
+                {
+                    try
+                    {
+                        if (!Directory.Exists(E.Root + "\\Cache"))
+                            return;
+                        if (!File.Exists(E.Root + "\\Cache\\BgImage.data"))
+                            return;
+
+                        MemoryStream ms = new MemoryStream();
+                        BitmapImage bi = new BitmapImage();
+                        byte[] bytArray = File.ReadAllBytes(E.Root + "\\Cache\\BgImage.data");
+                        ms.Write(bytArray, 0, bytArray.Length); ms.Position = 0;
+                        bi.BeginInit();
+                        bi.StreamSource = ms;
+                        bi.EndInit();
+
+                        this.Background = new ImageBrush(bi);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Cannot use this feature now. Problem with image.", "Error");
+                    }
+                }
             }
         }
 
@@ -397,12 +422,15 @@ namespace Mosaic.Windows
                 {
                     if (File.Exists(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp"))
                     {
-                        File.Copy(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp", E.Root + "\\Cache\\user.png", true);
+                        File.Copy(System.IO.Path.GetTempPath() + "\\" + Environment.UserName + ".bmp", E.Root + "\\Cache\\UserAccountThumb.png", true);
                     }
 
                     Header_UserName.Text = Environment.UserName;
+
+                    if (!File.Exists(E.Root + "\\Cache\\UserAccountThumb.png")) return;
+
                     var ms = new MemoryStream();
-                    var stream = new FileStream(E.Root + "\\Cache\\user.png", FileMode.Open, FileAccess.Read);
+                    var stream = new FileStream(E.Root + "\\Cache\\UserAccountThumb.png", FileMode.Open, FileAccess.Read);
                     ms.SetLength(stream.Length);
                     stream.Read(ms.GetBuffer(), 0, (int)stream.Length);
 
@@ -421,6 +449,11 @@ namespace Mosaic.Windows
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
+        }
+
+        private void Header_TitleText_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            DragScroll.ScrollToLeftEnd();
         }
     }
 }
