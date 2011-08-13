@@ -9,6 +9,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 using Mosaic.Base;
 using Mosaic.Controls;
 
@@ -17,12 +19,12 @@ namespace Mosaic.Windows
     /// <summary>
     /// Interaction logic for Options.xaml
     /// </summary>
-    public partial class Options : Window
+    public partial class Settings : Window
     {
         private readonly List<string> langCodes = new List<string>();
         private bool restartRequired;
 
-        public Options()
+        public Settings()
         {
             InitializeComponent();
         }
@@ -63,6 +65,8 @@ namespace Mosaic.Windows
             BgColorAlpha.ValueChanged += new RoutedPropertyChangedEventHandler<double>(BgColorAlpha_ValueChanged);
             BgColorAlpha.Value = (double)(int)E.BackgroundColor.A;
             EnableStaticAppWidgetBg.IsChecked = App.Settings.IsAppWidgetBgStatic;
+            EnableBgImage.IsChecked = App.Settings.UseBgImage;
+            EnableAutoStartCheckBox.IsChecked = App.Settings.Autostart;
             try
             {
                 AppWidgetBgColor.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Settings.AppWidgetBackgroundColor));
@@ -73,6 +77,7 @@ namespace Mosaic.Windows
             ValLockTime.Text = App.Settings.LockScreenTime.ToString();
 
             this.CheckBoxClick(this.EnableStaticAppWidgetBg, new RoutedEventArgs());
+            this.CheckBoxClick(this.EnableBgImage, new RoutedEventArgs());
 
             iFr.Helper.Animate(this, OpacityProperty, 500, 0, 1);
         }
@@ -104,31 +109,27 @@ namespace Mosaic.Windows
 
         private void ApplySettings()
         {
-            if (App.Settings.IsExclusiveMode != (bool)EnableExclusiveCheckBox.IsChecked)
-            {
-                restartRequired = true;
-            }
-            if (App.Settings.DragEverywhere != (bool)CheckBox_DragEW.IsChecked)
-            {
-                restartRequired = true;
-            }
+            if (App.Settings.IsExclusiveMode != (bool)EnableExclusiveCheckBox.IsChecked) { restartRequired = true; }
+            if (App.Settings.DragEverywhere != (bool)CheckBox_DragEW.IsChecked) { restartRequired = true; }
             App.Settings.IsExclusiveMode = (bool)EnableExclusiveCheckBox.IsChecked;
             App.Settings.AnimationEnabled = (bool)EnableAnimationCheckBox.IsChecked;
             App.Settings.EnableThumbnailsBar = (bool)EnableThumbBarCheckBox.IsChecked;
             App.Settings.DragEverywhere = (bool)CheckBox_DragEW.IsChecked;
             App.Settings.IsUserTileEnabled = (bool)EnableUserTile.IsChecked;
-
-            if (string.IsNullOrEmpty(ValLockTime.Text) || string.IsNullOrWhiteSpace(ValLockTime.Text))
-            { App.Settings.LockScreenTime = -1; }
-            else { Convert.ToInt32(ValLockTime.Text); }
-
+            App.Settings.UseBgImage = (bool)EnableBgImage.IsChecked;
+            App.Settings.Autostart = (bool)EnableAutoStartCheckBox.IsChecked;
+            try
+            {
+                RegistryKey regSUK = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                if (App.Settings.Autostart) { regSUK.SetValue("MW8E", System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)); }
+                else { regSUK.DeleteValue("MW8E", false); }
+            }
+            catch { }
+            if (string.IsNullOrEmpty(ValLockTime.Text) || string.IsNullOrWhiteSpace(ValLockTime.Text)) { App.Settings.LockScreenTime = -1; }
+            else { App.Settings.LockScreenTime = Convert.ToInt32(ValLockTime.Text); }
             var color = ((SolidColorBrush)this.AppWidgetBgColor.Fill).Color;
             App.Settings.AppWidgetBackgroundColor = color.ToString();
-
-            if (App.Settings.IsAppWidgetBgStatic == true && !(bool)EnableStaticAppWidgetBg.IsChecked)
-            {
-                restartRequired = true;
-            }
+            if (App.Settings.IsAppWidgetBgStatic == true && !(bool)EnableStaticAppWidgetBg.IsChecked) { restartRequired = true; }
             else
             {
                 foreach (WidgetControl c in ((MainWindow)App.Current.MainWindow).runningWidgets)
@@ -144,7 +145,6 @@ namespace Mosaic.Windows
                 }
             }
             App.Settings.IsAppWidgetBgStatic = (bool)EnableStaticAppWidgetBg.IsChecked;
-
             var lastLang = App.Settings.Language;
             if (LanguageComboBox.SelectedIndex >= 0)
                 App.Settings.Language = langCodes[LanguageComboBox.SelectedIndex];
@@ -191,6 +191,7 @@ namespace Mosaic.Windows
                 App.Settings.IsAppWidgetBgStatic = false;
                 App.Settings.LockScreenTime = -1;
                 App.Settings.AppWidgetBackgroundColor = "#FF000000";
+                App.Settings.UseBgImage = false;
                 App.Settings.Save(E.Root + "\\Mosaic.config");
             }
         }
@@ -222,6 +223,46 @@ namespace Mosaic.Windows
                         this.TextAppWidgetBgColor.Visibility = Visibility.Collapsed;
                         this.AppWidgetBgColor.Visibility = Visibility.Collapsed;
                         this.ChangeAppWidgetBgColorButton.Visibility = Visibility.Collapsed;
+                    }), 200);
+                }
+            }
+            if (sender == this.EnableBgImage)
+            {
+                if ((bool)this.EnableBgImage.IsChecked)
+                {
+                    this.TextBgImg.Visibility = Visibility.Visible;
+                    this.ChangeBgImg.Visibility = Visibility.Visible;
+                    this.MosaicBgColor.Visibility = Visibility.Collapsed;
+                    this.TextBgColor.Visibility = Visibility.Collapsed;
+                    this.ChangeBgColorButton.Visibility = Visibility.Collapsed;
+                    this.TextBgTrans.Visibility = Visibility.Collapsed;
+                    this.BgColorAlpha.Visibility = Visibility.Collapsed;
+                    iFr.Helper.Animate(this.TextBgImg, OpacityProperty, 250, 0, 1);
+                    iFr.Helper.Animate(this.ChangeBgImg, OpacityProperty, 250, 0, 1);
+                    iFr.Helper.Animate(this.MosaicBgColor, OpacityProperty, 250, 0);
+                    iFr.Helper.Animate(this.TextBgColor, OpacityProperty, 250, 0);
+                    iFr.Helper.Animate(this.ChangeBgColorButton, OpacityProperty, 250, 0);
+                    iFr.Helper.Animate(this.TextBgTrans, OpacityProperty, 250, 0);
+                    iFr.Helper.Animate(this.BgColorAlpha, OpacityProperty, 250, 0);
+                }
+                else
+                {
+                    iFr.Helper.Animate(this.TextBgImg, OpacityProperty, 250, 0);
+                    iFr.Helper.Animate(this.ChangeBgImg, OpacityProperty, 250, 0);
+                    iFr.Helper.Animate(this.MosaicBgColor, OpacityProperty, 250, 0, 1);
+                    iFr.Helper.Animate(this.TextBgColor, OpacityProperty, 250, 0, 1);
+                    iFr.Helper.Animate(this.ChangeBgColorButton, OpacityProperty, 250, 0, 1);
+                    iFr.Helper.Animate(this.TextBgTrans, OpacityProperty, 250, 0, 1);
+                    iFr.Helper.Animate(this.BgColorAlpha, OpacityProperty, 250, 0, 1);
+                    iFr.Helper.Delay(new Action(() =>
+                    {
+                        this.TextBgImg.Visibility = Visibility.Collapsed;
+                        this.ChangeBgImg.Visibility = Visibility.Collapsed;
+                        this.MosaicBgColor.Visibility = Visibility.Visible;
+                        this.TextBgColor.Visibility = Visibility.Visible;
+                        this.ChangeBgColorButton.Visibility = Visibility.Visible;
+                        this.TextBgTrans.Visibility = Visibility.Visible;
+                        this.BgColorAlpha.Visibility = Visibility.Visible;
                     }), 200);
                 }
             }
@@ -289,6 +330,45 @@ namespace Mosaic.Windows
             {
                 var window = (MainWindow)App.Current.MainWindow;
                 window.Background = new SolidColorBrush(E.BackgroundColor);
+            }
+        }
+
+        private void ChangeBgImgClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "Image files|*.png;*.jpg;*.jpeg";
+            if (!(bool)dialog.ShowDialog())
+                return;
+
+            if (App.Settings.IsExclusiveMode)
+            {
+                var window = (MainWindow)App.Current.MainWindow;
+                try
+                {
+                    if (!Directory.Exists(E.Root + "\\Cache"))
+                        Directory.CreateDirectory(E.Root + "\\Cache");
+                    if (!File.Exists(E.Root + "\\Cache\\BgImage.data"))
+                        File.Create(E.Root + "\\Cache\\BgImage.data");
+
+                    byte[] bytArray = File.ReadAllBytes(dialog.FileName);
+                    File.WriteAllBytes(E.Root + "\\Cache\\BgImage.data", bytArray);
+
+                    MemoryStream ms = new MemoryStream();
+                    BitmapImage bi = new BitmapImage();
+
+                    ms.Write(bytArray, 0, bytArray.Length); ms.Position = 0;
+                    bi.BeginInit();
+                    bi.StreamSource = ms;
+                    bi.EndInit();
+
+                    window.Background = new ImageBrush(bi);
+                    App.Settings.UseBgImage = true;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Cannot use this feature now. Problem with image.", "Error");
+                    App.Settings.UseBgImage = false;
+                }
             }
         }
     }
