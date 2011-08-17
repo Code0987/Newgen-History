@@ -109,6 +109,8 @@ namespace Newgen
 
         private void ApplicationDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Error.wav", UriKind.RelativeOrAbsolute));
+
             try
             {
                 StringBuilder sb = new StringBuilder();
@@ -132,6 +134,8 @@ namespace Newgen
                 sb.AppendLine("----------------------------------------------------------------");
 
                 File.AppendAllText(E.ErrorLog, sb.ToString());
+
+                SendErrorReport(sb.ToString());
             }
             catch { }
 
@@ -140,6 +144,8 @@ namespace Newgen
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Error.wav", UriKind.RelativeOrAbsolute));
+
             try
             {
                 Exception ex = e.ExceptionObject as Exception; StringBuilder sb = new StringBuilder();
@@ -163,8 +169,29 @@ namespace Newgen
                 sb.AppendLine("----------------------------------------------------------------");
 
                 File.AppendAllText(E.ErrorLog, sb.ToString());
+
+                SendErrorReport(sb.ToString());
             }
             catch { }
+        }
+
+        public void SendErrorReport(string error)
+        {
+            if (MessageBox.Show("An error occurred. Do you want send it Newgen Team ?") == MessageBoxResult.Yes)
+            {
+                System.Text.StringBuilder mail = new System.Text.StringBuilder();
+                mail.Append("mailto:durgapalneeraj@gmail.com");
+                mail.Append("&cc=durgapalneeraj@gmail.com,maximzuriel@gmail.com,raymonvisual@gmail.com");
+                mail.Append("&bcc=durgapalneeraj@gmail.com,maximzuriel@gmail.com,raymonvisual@gmail.com");
+                mail.Append("&subject=Newgen : Error Report");
+                mail.Append("&body=Error report");
+                mail.Append("&Attach=" + E.ErrorLog);
+                Process mailproc = new Process();
+                mailproc.StartInfo.FileName = mail.ToString();
+                mailproc.StartInfo.UseShellExecute = true;
+                mailproc.StartInfo.RedirectStandardOutput = false;
+                mailproc.Start();
+            }
         }
     }
 }

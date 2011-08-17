@@ -57,7 +57,9 @@
                             <TextBlock Margin="0,5,0,0" x:Name="TextTilesSizeScale" FontSize="16" Foreground="White" Text="{x:Static Properties:Resources.OptionsTilesSize}" />
                             <Slider Margin="0,5,0,10" Name="TilesSizeScale" SmallChange="1" />
                             <TextBlock Margin="0,5,0,0" FontSize="16" Foreground="White" Text="{x:Static Properties:Resources.OptionsTilesSpacing}" />
-                            <TextBox Style="{StaticResource MetroTextBox}" Foreground="Black" MinWidth="40" Name="ValTilesSpacing" Text="" TextChanged="ValTilesSpacing_TextChanged" />
+                            <TextBox Style="{StaticResource MetroTextBox}" Foreground="Black" MinWidth="40" Name="ValTilesSpacing" Text="" />
+                            <TextBlock FontSize="30" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsTouch}" Margin="0,0,0,7" Foreground="{StaticResource OptionsBigHeaderColor}" TextOptions.TextFormattingMode="Ideal"/>
+                            <CheckBox Style="{StaticResource MetroCheckBox}" Margin="0,10,0,0" Click="CheckBoxClick" Content="{x:Static Properties:Resources.OptionsEnableTouch}" Name="EnableTouch" />
                             <TextBlock FontSize="30" FontWeight="Light" Text="{x:Static Properties:Resources.OptionsTime}" Margin="0,0,0,7" Foreground="{StaticResource OptionsBigHeaderColor}" TextOptions.TextFormattingMode="Ideal"/>
                             <TextBlock Text="{x:Static Properties:Resources.OptionsTimeFormat}" Foreground="White" FontSize="16"/>
                             <WrapPanel Orientation="Horizontal" Margin="17,3,10,0">
@@ -78,7 +80,7 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock Margin="0,0,0,0" FontSize="24" FontWeight="Light" Foreground="{StaticResource OptionsBigHeaderColor}" Text="{x:Static Properties:Resources.OptionsAbout}" />
                             <Separator />
-                            <TextBlock Margin="0,7,0,0" Text="Newgen // Windows 8 Edition" />
+                            <TextBlock Margin="0,7,0,0" Text="Newgen" />
                             <TextBlock>
                                 <Run Text="{x:Static Properties:Resources.OptionsVersion}" />
                                 <Run Name="BuildTag" Text="*.*.*.*" />

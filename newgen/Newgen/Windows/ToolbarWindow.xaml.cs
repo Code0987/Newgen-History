@@ -56,6 +56,8 @@ namespace Newgen.Windows
 
         private void ItemMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
             int timediff = (int)DateTime.Now.Subtract(mouseclicktimestamp).TotalMilliseconds;
             mouseclicktimestamp = DateTime.Now;
             if (timediff < E.AnimationTimePrecision)
@@ -88,6 +90,9 @@ namespace Newgen.Windows
 
         public void Open()
         {
+            if (!App.Settings.IsTouchSupport) { TouchSupportPin.Visibility = Visibility.Collapsed; }
+            else { TouchSupportPin.Visibility = Visibility.Visible; }
+
             var s = Resources["ToolbarOpenAnim"] as Storyboard;
             ((DoubleAnimation)s.Children[0]).To = SystemParameters.PrimaryScreenWidth - this.Width;
 
@@ -107,15 +112,17 @@ namespace Newgen.Windows
             }
             catch { }
 
-            iFr.Helper.Animate(this.StartButton, OpacityProperty, 300, 0, 1);
-            iFr.Helper.Animate(this.TilesButton, OpacityProperty, 400, 0, 1);
-            iFr.Helper.Animate(this.PeopleButton, OpacityProperty, 500, 0, 1);
+            iFr.Helper.Animate(this.SearchButton, OpacityProperty, 200, 0, 1);
+            iFr.Helper.Animate(this.ShareButton, OpacityProperty, 300, 0, 1);
+            iFr.Helper.Animate(this.StartButton, OpacityProperty, 400, 0, 1);
+            iFr.Helper.Animate(this.ConnectButton, OpacityProperty, 500, 0, 1);
             iFr.Helper.Animate(this.SettingsButton, OpacityProperty, 600, 0, 1);
-            iFr.Helper.Animate(this.ExitButton, OpacityProperty, 700, 0, 1);
         }
 
         public void CloseToolbar()
         {
+            if (ContextMenu.IsOpen) return;
+
             var s = Resources["ToolbarCloseAnim"] as Storyboard;
             ((DoubleAnimation)s.Children[0]).To = SystemParameters.PrimaryScreenWidth - (TouchSupportPin.ActualWidth + 1);
 
@@ -143,13 +150,10 @@ namespace Newgen.Windows
             catch { }
         }
 
-        private void ExitButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            Application.Current.MainWindow.Close();
-        }
-
         private void SettingsButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
             App.ShowOptions();
         }
 
@@ -157,6 +161,7 @@ namespace Newgen.Windows
         {
             if (e.ClickCount >= 2)
             {
+                E.Play(new Uri("Cache\\Sounds\\Windows Minimize.wav", UriKind.RelativeOrAbsolute));
                 App.Current.MainWindow.Hide();
             }
             else
@@ -166,6 +171,7 @@ namespace Newgen.Windows
                     if (window.GetType() == typeof(HubWindow))
                         continue;
 
+                    E.Play(new Uri("Cache\\Sounds\\Windows Minimize.wav", UriKind.RelativeOrAbsolute));
                     ((Window)window).Activate();
                     ((Window)window).Show();
                 }
@@ -186,16 +192,13 @@ namespace Newgen.Windows
         {
             var sh = new SearchHub();
             sh.Show();
-        }
-
-        private void TilesButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            TilesListGrid.Visibility = System.Windows.Visibility.Visible;
-            TilesList.Visibility = System.Windows.Visibility.Visible;
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
         }
 
         private void WidgetsButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
             TilesList.Visibility = System.Windows.Visibility.Collapsed;
             WidgetsList.Visibility = System.Windows.Visibility.Visible;
             foreach (var w in App.WidgetManager.Widgets)
@@ -225,6 +228,8 @@ namespace Newgen.Windows
 
         private void BackButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
             TilesListGrid.Visibility = System.Windows.Visibility.Collapsed;
             foreach (ToolbarItem item in WidgetsList.Children)
             {
@@ -251,6 +256,8 @@ namespace Newgen.Windows
 
         private void PinWebButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
             var addressWindow = new AddressBarWindow();
             addressWindow.ShowDialog();
             if (string.IsNullOrEmpty(addressWindow.AddressBox.Text))
@@ -261,6 +268,8 @@ namespace Newgen.Windows
 
         private void PinAppButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
             var dialog = new OpenFileDialog();
             dialog.Filter = "Executable files|*.exe";
             if (!(bool)dialog.ShowDialog())
@@ -269,10 +278,19 @@ namespace Newgen.Windows
             App.WidgetManager.LoadWidget(widget);
         }
 
-        private void PeopleButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void ShareButtonMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var peopleHub = new PeopleHub();
-            peopleHub.Show();
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
+            var ShareHub = new ShareHub();
+            ShareHub.Show();
+        }
+
+        private void ConnectButtonMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
+            MessageBox.Show("Sorry ! but the feature is under development.");
         }
 
         private void WindowPreviewKeyDown(object sender, KeyEventArgs e)
@@ -284,6 +302,20 @@ namespace Newgen.Windows
                 else
                     CloseToolbar();
             }
+        }
+
+        private void MenuItem_Tiles_Click(object sender, RoutedEventArgs e)
+        {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+            TilesListGrid.Visibility = System.Windows.Visibility.Visible;
+            TilesList.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
+            Application.Current.MainWindow.Close();
         }
     }
 }

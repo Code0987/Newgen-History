@@ -38,7 +38,7 @@ namespace Newgen.Windows
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             var fileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            BuildTag.Text = version + ".beta." + fileInfo.LastWriteTimeUtc.ToString("yyMMdd-HHmm");
+            BuildTag.Text = version + ".stable." + fileInfo.LastWriteTimeUtc.ToString("yyMMdd-HHmm");
 
             LanguageComboBox.Items.Add(new ComboBoxItem() { Content = CultureInfo.GetCultureInfo("en-US").NativeName });
             langCodes.Add("en-US");
@@ -67,6 +67,7 @@ namespace Newgen.Windows
             EnableStaticAppWidgetBg.IsChecked = App.Settings.IsAppWidgetBgStatic;
             EnableBgImage.IsChecked = App.Settings.UseBgImage;
             EnableAutoStartCheckBox.IsChecked = App.Settings.Autostart = E.GetAutoStart();
+            EnableTouch.IsChecked = App.Settings.IsTouchSupport;
             if (App.Settings.TimeMode == 1) Time24HRadioButton.IsChecked = true;
             try
             {
@@ -85,6 +86,7 @@ namespace Newgen.Windows
             TilesSizeScale.ValueChanged += new RoutedPropertyChangedEventHandler<double>(TilesSizeScale_ValueChanged);
             ValTilesSpacing.Text = App.Settings.TileSpacing.ToString();
             ValLockTime.Text = App.Settings.LockScreenTime.ToString();
+            ValTilesSpacing.TextChanged += new TextChangedEventHandler(ValTilesSpacing_TextChanged);
 
             this.CheckBoxClick(this.EnableStaticAppWidgetBg, new RoutedEventArgs());
             this.CheckBoxClick(this.EnableBgImage, new RoutedEventArgs());
@@ -128,6 +130,7 @@ namespace Newgen.Windows
             App.Settings.IsUserTileEnabled = (bool)EnableUserTile.IsChecked;
             App.Settings.UseBgImage = (bool)EnableBgImage.IsChecked;
             App.Settings.Autostart = (bool)EnableAutoStartCheckBox.IsChecked;
+            App.Settings.IsTouchSupport = (bool)EnableTouch.IsChecked;
             if (Time24HRadioButton.IsChecked == true) App.Settings.TimeMode = 1;
             else App.Settings.TimeMode = 0;
 
@@ -201,6 +204,11 @@ namespace Newgen.Windows
                 App.Settings.LockScreenTime = -1;
                 App.Settings.AppWidgetBackgroundColor = "#FF000000";
                 App.Settings.UseBgImage = false;
+                App.Settings.TileSpacing = 8;
+                App.Settings.MinTileWidth = 180;
+                App.Settings.MinTileHeight = 180;
+                App.Settings.TimeMode = 1;
+                App.Settings.IsTouchSupport = true;
                 App.Settings.Save(E.Root + "\\Newgen.config");
             }
         }
@@ -351,16 +359,16 @@ namespace Newgen.Windows
             App.Settings.MinTileWidth = App.Settings.MinTileHeight * E.TilesSizeFactor;
             E.MinTileWidth = App.Settings.MinTileWidth;
             E.MinTileHeight = App.Settings.MinTileHeight;
-
-            try
-            {
-                ((MainWindow)App.Current.MainWindow).MarkupGrid();
-                foreach (WidgetControl control in ((MainWindow)App.Current.MainWindow).runningWidgets)
-                {
-                    ((MainWindow)App.Current.MainWindow).PlaceWidget(control);
-                }
-            }
-            catch { }
+            restartRequired = true;
+            //try
+            //{
+            //    ((MainWindow)App.Current.MainWindow).MarkupGrid();
+            //    foreach (WidgetControl control in ((MainWindow)App.Current.MainWindow).runningWidgets)
+            //    {
+            //        ((MainWindow)App.Current.MainWindow).PlaceWidget(control);
+            //    }
+            //}
+            //catch { }
         }
 
         private void ChangeBgImgClick(object sender, RoutedEventArgs e)
@@ -416,16 +424,17 @@ namespace Newgen.Windows
                 {
                     App.Settings.TileSpacing = anInteger;
                     E.TileSpacing = App.Settings.TileSpacing;
-                    try
-                    {
-                        ((MainWindow)App.Current.MainWindow).MarkupGrid();
+                    restartRequired = true;
+                    //try
+                    //{
+                    //    ((MainWindow)App.Current.MainWindow).MarkupGrid();
 
-                        foreach (WidgetControl control in ((MainWindow)App.Current.MainWindow).runningWidgets)
-                        {
-                            ((MainWindow)App.Current.MainWindow).PlaceWidget(control);
-                        }
-                    }
-                    catch { }
+                    //    foreach (WidgetControl control in ((MainWindow)App.Current.MainWindow).runningWidgets)
+                    //    {
+                    //        ((MainWindow)App.Current.MainWindow).PlaceWidget(control);
+                    //    }
+                    //}
+                    //catch { }
                 }
             }
             catch (Exception ex)

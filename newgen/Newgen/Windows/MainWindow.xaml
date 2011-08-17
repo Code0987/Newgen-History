@@ -1,17 +1,17 @@
-﻿<Window x:Class="Newgen.Windows.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Newgen.Controls" xmlns:Core="clr-namespace:Newgen.Controls" xmlns:Properties="clr-namespace:Newgen.Properties" Height="300" Width="300" AllowsTransparency="True" Background="Transparent" Closing="WindowClosing" Loaded="WindowLoaded" MouseLeftButtonUp="WindowMouseLeftButtonUp" ResizeMode="NoResize" ShowInTaskbar="False" SourceInitialized="WindowSourceInitialized" Title="MainWindow" WindowStyle="None" MouseMove="Window_MouseMove">
+﻿<Window x:Class="Newgen.Windows.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Newgen.Controls" xmlns:Core="clr-namespace:Newgen.Controls" xmlns:Properties="clr-namespace:Newgen.Properties" Height="300" Width="300" AllowsTransparency="True" Background="Transparent" Closing="WindowClosing" Loaded="WindowLoaded" MouseLeftButtonUp="WindowMouseLeftButtonUp" MouseMove="Window_MouseMove" ResizeMode="NoResize" ShowInTaskbar="False" SourceInitialized="WindowSourceInitialized" Title="MainWindow" WindowStyle="None">
     <Grid x:Name="Root">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" x:Name="Header" Margin="120,40,46,60">
+            <Grid x:Name="Header" Grid.Row="0" Margin="120,40,46,60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="Header_TitleText" Grid.Column="0" TextOptions.TextFormattingMode="Ideal" FontSize="56" FontWeight="Light" Foreground="#C8FFFFFF" HorizontalAlignment="Left" Text="Start" VerticalAlignment="Top"  MouseUp="Header_TitleText_MouseUp"/>
-                <Grid Grid.Column="1" x:Name="UserTile">
+                <TextBlock x:Name="Header_TitleText" Grid.Column="0" TextOptions.TextFormattingMode="Ideal" FontSize="56" FontWeight="Light" Foreground="#C8FFFFFF" HorizontalAlignment="Left" MouseUp="Header_TitleText_MouseUp" Text="Start" VerticalAlignment="Top" />
+                <Grid x:Name="UserTile" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="64" />
@@ -24,8 +24,15 @@
                             <DoubleAnimation Storyboard.TargetName="UserTileTranslate" Storyboard.TargetProperty="X" AccelerationRatio="0.7" DecelerationRatio="0.3" Duration="0:0:0.2" To="-1" />
                         </Storyboard>
                     </Grid.Resources>
-                    <TextBlock Grid.Column="0" Margin="0,0,12,0" FontFamily="/Newgen.Base/Fonts/SegoeWP-Light.ttf" FontSize="20" Foreground="#C8FFFFFF" HorizontalAlignment="Right" Name="Header_UserName" Text="Me : User" TextWrapping="Wrap" VerticalAlignment="Center" />
-                    <Image Grid.Column="1" Name="Header_UserPic" Source="/Resources/Newgen_logo.png" Width="64" Height="64" Stretch="Fill" />
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Margin="0,0,12,0" FontSize="20" Foreground="#C8FFFFFF" HorizontalAlignment="Right" Name="Header_UserName" Text="Me : User" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <Button Style="{StaticResource MetroButton}" Grid.Row="1" Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0" Click="Button_Lock_Click" Content="Lock" Name="Button_Lock" HorizontalContentAlignment="Right" />
+                    </Grid>
+                    <Image Grid.Column="1" Height="64" Width="64" Name="Header_UserPic" Source="/Resources/Newgen_logo.png" Stretch="Fill" />
                 </Grid>
             </Grid>
             <Core:DragScrollViewer x:Name="DragScroll" Grid.Row="1" DragEverywhere="true" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">

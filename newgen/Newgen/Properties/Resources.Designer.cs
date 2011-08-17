@@ -70,6 +70,15 @@ namespace Newgen.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        public static string ConnectItem {
+            get {
+                return ResourceManager.GetString("ConnectItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit Newgen.
         /// </summary>
         public static string ExitItem {
@@ -259,6 +268,15 @@ namespace Newgen.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable touch support.
+        /// </summary>
+        public static string OptionsEnableTouch {
+            get {
+                return ResourceManager.GetString("OptionsEnableTouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable UserTile (User name and Picture) on main screen..
         /// </summary>
         public static string OptionsEnableUserTile {
@@ -385,6 +403,15 @@ namespace Newgen.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Touch Support.
+        /// </summary>
+        public static string OptionsTouch {
+            get {
+                return ResourceManager.GetString("OptionsTouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User interface.
         /// </summary>
         public static string OptionsUI {
@@ -408,24 +435,6 @@ namespace Newgen.Properties {
         public static string OptionsWindowTitle {
             get {
                 return ResourceManager.GetString("OptionsWindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select friends that you want to pin on a start screen.
-        /// </summary>
-        public static string PeopleHubTip {
-            get {
-                return ResourceManager.GetString("PeopleHubTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Friends....
-        /// </summary>
-        public static string PeopleItem {
-            get {
-                return ResourceManager.GetString("PeopleItem", resourceCulture);
             }
         }
         
@@ -502,6 +511,24 @@ namespace Newgen.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select friends that you want to pin on a start screen.
+        /// </summary>
+        public static string ShareHubTip {
+            get {
+                return ResourceManager.GetString("ShareHubTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string ShareItem {
+            get {
+                return ResourceManager.GetString("ShareItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string StartItem {
@@ -511,7 +538,7 @@ namespace Newgen.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tiles.
+        ///   Looks up a localized string similar to Add Tiles.
         /// </summary>
         public static string TilesItem {
             get {

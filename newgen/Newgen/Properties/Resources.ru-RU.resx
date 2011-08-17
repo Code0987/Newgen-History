@@ -183,10 +183,10 @@
   <data name="OptionsWindowTitle" xml:space="preserve">
     <value>Настройки Newgen</value>
   </data>
-  <data name="PeopleHubTip" xml:space="preserve">
+  <data name="ShareHubTip" xml:space="preserve">
     <value>Выберите друзей, которых вы хотите закрепить на главном экране</value>
   </data>
-  <data name="PeopleItem" xml:space="preserve">
+  <data name="ShareItem" xml:space="preserve">
     <value>Друзья...</value>
   </data>
   <data name="PinAppItem" xml:space="preserve">

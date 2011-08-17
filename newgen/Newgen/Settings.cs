@@ -27,6 +27,7 @@ namespace Newgen
             MinTileWidth = 180;
             MinTileHeight = 180;
             TimeMode = 1;
+            IsTouchSupport = true;
         }
 
         public int TimeMode { get; set; }
@@ -66,5 +67,7 @@ namespace Newgen
         public double MinTileHeight { get; set; }
 
         public double MinTileWidth { get; set; }
+
+        public bool IsTouchSupport { get; set; }
     }
 }

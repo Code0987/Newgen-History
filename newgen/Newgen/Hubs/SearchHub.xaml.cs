@@ -6,7 +6,7 @@ using Social.Base;
 namespace Newgen.Windows
 {
     /// <summary>
-    /// Interaction logic for PeopleHub.xaml
+    /// Interaction logic for ShareHub.xaml
     /// </summary>
     public partial class SearchHub : Window
     {

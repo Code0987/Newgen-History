@@ -234,11 +234,8 @@
   <data name="OptionsWindowTitle" xml:space="preserve">
     <value>Newgen options</value>
   </data>
-  <data name="PeopleHubTip" xml:space="preserve">
+  <data name="ShareHubTip" xml:space="preserve">
     <value>Select friends that you want to pin on a start screen</value>
-  </data>
-  <data name="PeopleItem" xml:space="preserve">
-    <value>Friends...</value>
   </data>
   <data name="PinAppItem" xml:space="preserve">
     <value>Pin application</value>
@@ -264,11 +261,14 @@
   <data name="SearchItem" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="ShareItem" xml:space="preserve">
+    <value>Share</value>
+  </data>
   <data name="StartItem" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="TilesItem" xml:space="preserve">
-    <value>Tiles</value>
+    <value>Add Tiles</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>what's new?</value>
@@ -278,5 +278,14 @@
   </data>
   <data name="WidgetsItem" xml:space="preserve">
     <value>Widgets</value>
+  </data>
+  <data name="ConnectItem" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="OptionsEnableTouch" xml:space="preserve">
+    <value>Enable touch support</value>
+  </data>
+  <data name="OptionsTouch" xml:space="preserve">
+    <value>Touch Support</value>
   </data>
 </root>

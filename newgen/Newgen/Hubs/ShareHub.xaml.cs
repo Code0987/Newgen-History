@@ -8,13 +8,13 @@ using Social.Base;
 namespace Newgen.Windows
 {
     /// <summary>
-    /// Interaction logic for PeopleHub.xaml
+    /// Interaction logic for ShareHub.xaml
     /// </summary>
-    public partial class PeopleHub : Window
+    public partial class ShareHub : Window
     {
         private SocialProvider socialProvider;
 
-        public PeopleHub()
+        public ShareHub()
         {
             InitializeComponent();
         }
@@ -55,7 +55,7 @@ namespace Newgen.Windows
                     var friends = socialProvider.GetFriends();
                     foreach (var friend in friends)
                     {
-                        var item = new PeopleItem();
+                        var item = new ShareItem();
                         item.Friend = friend;
                         var loadedFriend = App.WidgetManager.Widgets.Find(x => x.Path == friend.Id);
                         if (loadedFriend != null)
@@ -63,7 +63,7 @@ namespace Newgen.Windows
                             item.IsChecked = true;
                         }
                         item.MouseLeftButtonUp += ItemMouseLeftButtonUp;
-                        PeoplePanel.Children.Add(item);
+                        SharePanel.Children.Add(item);
                     }
                 });
             };
@@ -74,7 +74,7 @@ namespace Newgen.Windows
 
         private void ItemMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var item = (PeopleItem)sender;
+            var item = (ShareItem)sender;
             if (App.WidgetManager.IsWidgetLoaded(item.Friend.Name))
                 return;
             var widget = App.WidgetManager.CreateFriendWidget(item.Friend.Id, item.Friend.Name);
@@ -90,7 +90,7 @@ namespace Newgen.Windows
         {
             iFr.Helper.Animate(this, OpacityProperty, 250, 0);
 
-            foreach (PeopleItem item in PeoplePanel.Children)
+            foreach (ShareItem item in SharePanel.Children)
             {
                 item.MouseLeftButtonUp -= ItemMouseLeftButtonUp;
             }

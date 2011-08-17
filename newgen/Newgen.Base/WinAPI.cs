@@ -126,6 +126,9 @@ namespace Newgen.Base
         public static extern int SHGetFileInfo(string pszPath, uint dwFileAttributes, out SHFILEINFO psfi, uint cbFileInfo, uint flags);
 
         [DllImport("user32.dll")]
+        public static extern int ExitWindowsEx(int uFlags, int dwReason);
+
+        [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool IsIconic(IntPtr hWnd);
 

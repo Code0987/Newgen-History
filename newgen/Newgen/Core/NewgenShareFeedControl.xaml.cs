@@ -3,11 +3,11 @@
 namespace Newgen.Core
 {
     /// <summary>
-    /// Interaction logic for NewgenPeopleFeedControl.xaml
+    /// Interaction logic for NewgenShareFeedControl.xaml
     /// </summary>
-    public partial class NewgenPeopleFeedControl : UserControl
+    public partial class NewgenShareFeedControl : UserControl
     {
-        public NewgenPeopleFeedControl()
+        public NewgenShareFeedControl()
         {
             InitializeComponent();
         }

@@ -12,14 +12,14 @@ using Social.Base;
 namespace Newgen.Controls
 {
     /// <summary>
-    /// Interaction logic for PeopleItem.xaml
+    /// Interaction logic for ShareItem.xaml
     /// </summary>
-    public partial class PeopleItem : UserControl
+    public partial class ShareItem : UserControl
     {
         public bool MousePressed;
         private WebClient webClient;
 
-        public PeopleItem()
+        public ShareItem()
         {
             InitializeComponent();
         }

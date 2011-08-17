@@ -60,7 +60,7 @@
             </DockPanel.RenderTransform>
             <Button Grid.Column="0" Content="Logoff" Name="Button_Logoff" BorderThickness="0" BorderBrush="{x:Null}" Style="{StaticResource MetroButton}" Background="#96000000" Click="Button_Logoff_Click" />
             <Button Grid.Column="1" Content="Restart" Name="Button_Restart" BorderThickness="0" BorderBrush="{x:Null}" Style="{StaticResource MetroButton}" Background="#96000000" Click="Button_Restart_Click" />
-            <Button Grid.Column="1" Content="Shutdown" Name="Button_Shutdown" BorderThickness="0" BorderBrush="{x:Null}" Style="{StaticResource MetroButton}" Background="#96000000" Click="Button_Shutdown_Click" />
+            <Button Grid.Column="2" Content="Shutdown" Name="Button_Shutdown" BorderThickness="0" BorderBrush="{x:Null}" Style="{StaticResource MetroButton}" Background="#96000000" Click="Button_Shutdown_Click" />
         </DockPanel>
     </Grid>
 </UserControl>

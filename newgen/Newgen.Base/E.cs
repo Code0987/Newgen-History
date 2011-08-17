@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -106,11 +108,11 @@ namespace Newgen.Base
             RegistryKey regSUK = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             if (autostart)
             {
-                regSUK.SetValue("Newgen Windows 8 Edition", Process.GetCurrentProcess().MainModule.FileName + " -winstart");
+                regSUK.SetValue("Newgen", Process.GetCurrentProcess().MainModule.FileName + " -winstart");
             }
             else
             {
-                regSUK.DeleteValue("Newgen Windows 8 Edition", false);
+                regSUK.DeleteValue("Newgen", false);
             }
         }
 
@@ -118,8 +120,23 @@ namespace Newgen.Base
         {
             RegistryKey regSUK = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             bool result = false;
-            if (regSUK.GetValue("Newgen Windows 8 Edition", null) != null) result = true;
+            if (regSUK.GetValue("Newgen", null) != null) result = true;
             return result;
+        }
+
+        private static List<MediaPlayer> mediaplayers = new List<MediaPlayer>();
+
+        public static void Play(Uri source)
+        {
+            MediaPlayer mp = new MediaPlayer()
+            {
+                Volume = 1.0
+            };
+            mediaplayers.Add(mp);
+            mp.MediaEnded += (s, e) => { try { mediaplayers.Remove(mp); } catch { } };
+            mp.MediaFailed += (s, e) => { try { mediaplayers.Remove(mp); } catch { } };
+            mp.MediaOpened += (s, e) => { mp.Play(); };
+            mp.Open(source);
         }
     }
 }

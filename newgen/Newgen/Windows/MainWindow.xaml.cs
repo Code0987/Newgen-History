@@ -28,6 +28,8 @@ namespace Newgen.Windows
         {
             InitializeComponent();
 
+            E.Play(new Uri("Cache\\Sounds\\Windows Logon Sound.wav", UriKind.RelativeOrAbsolute));
+
             if (App.Settings.IsExclusiveMode)
             {
                 this.Background = new SolidColorBrush(E.BackgroundColor);
@@ -62,7 +64,7 @@ namespace Newgen.Windows
                 thumbBar.Show();
             }
 
-            iFr.Helper.Animate(this, OpacityProperty, 500, 0, 1);
+            iFr.Helper.Animate(this, OpacityProperty, 1000, 0, 1);
             iFr.Helper.Delay(new Action(() =>
             {
                 if (this.thumbBar != null) { this.thumbBar.Opacity = 1; }
@@ -135,6 +137,7 @@ namespace Newgen.Windows
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Shutdown.wav", UriKind.RelativeOrAbsolute));
             App.Settings.LoadedWidgets.Clear();
             foreach (var runningWidget in runningWidgets)
             {
@@ -306,7 +309,16 @@ namespace Newgen.Windows
 
         private void Header_TitleText_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
             DragScroll.ScrollToLeftEnd();
+        }
+
+        private void Button_Lock_Click(object sender, RoutedEventArgs e)
+        {
+            E.Play(new Uri("Cache\\Sounds\\Windows Menu Command.wav", UriKind.RelativeOrAbsolute));
+
+            try { WinAPI.LockWorkStation(); }
+            catch { }
         }
 
         private void WidgetManagerWidgetLoaded(WidgetProxy widget)

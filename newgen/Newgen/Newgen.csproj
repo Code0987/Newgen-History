@@ -21,7 +21,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\MW8E Releases\</PublishUrl>
+    <PublishUrl>C:\Newgen Releases\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -86,6 +86,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AwesomiumSharp, Version=1.6.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\Ref\AwesomiumSharp.dll</HintPath>
@@ -139,8 +142,8 @@
       <DependentUpon>BottomToolbar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\DragScrollViewer.cs" />
-    <Compile Include="Controls\PeopleItem.xaml.cs">
-      <DependentUpon>PeopleItem.xaml</DependentUpon>
+    <Compile Include="Controls\ShareItem.xaml.cs">
+      <DependentUpon>ShareItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Thumbnail.cs" />
     <Compile Include="Controls\ToolbarItem.xaml.cs">
@@ -166,8 +169,8 @@
     <Compile Include="Core\NewgenHtmlWidget.cs" />
     <Compile Include="Core\NewgenHtmlWidget2.cs" />
     <Compile Include="Core\NewgenMatrix.cs" />
-    <Compile Include="Core\NewgenPeopleFeedControl.xaml.cs">
-      <DependentUpon>NewgenPeopleFeedControl.xaml</DependentUpon>
+    <Compile Include="Core\NewgenShareFeedControl.xaml.cs">
+      <DependentUpon>NewgenShareFeedControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\NewgenWebPreviewWidget.cs" />
     <Compile Include="Core\WidgetManager.cs" />
@@ -198,8 +201,8 @@
     <Compile Include="Windows\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\PeopleHub.xaml.cs">
-      <DependentUpon>PeopleHub.xaml</DependentUpon>
+    <Compile Include="Hubs\ShareHub.xaml.cs">
+      <DependentUpon>ShareHub.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ThumbnailsBar.xaml.cs">
       <DependentUpon>ThumbnailsBar.xaml</DependentUpon>
@@ -247,7 +250,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\PeopleItem.xaml">
+    <Page Include="Controls\ShareItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,7 +278,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Core\NewgenPeopleFeedControl.xaml">
+    <Page Include="Core\NewgenShareFeedControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -307,7 +310,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Hubs\PeopleHub.xaml">
+    <Page Include="Hubs\ShareHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -351,6 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="app.manifest" />
     <None Include="Newgen_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -379,37 +383,31 @@
     <Resource Include="Resources\search_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\batt1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt10.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt7.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\batt9.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Newgen_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cache\Sounds\Windows Ding.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cache\Sounds\Windows Error.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cache\Sounds\Windows Logoff Sound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cache\Sounds\Windows Logon Sound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cache\Sounds\Windows Menu Command.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cache\Sounds\Windows Minimize.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cache\Sounds\Windows Shutdown.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\connect_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

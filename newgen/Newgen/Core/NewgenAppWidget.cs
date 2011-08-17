@@ -48,6 +48,12 @@ namespace Newgen.Core
             icon.Width = 32;
             icon.Height = 32;
 
+            root.Children.Add(new System.Windows.Shapes.Rectangle()
+            {
+                Stroke = new SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#71FFFFFF")),
+                StrokeThickness = 1
+            });
+
             //ImageBrush ib = new ImageBrush();
             //ib.ImageSource = new BitmapImage(new Uri(E.Root + "\\AppIcons\\BG.png"));
             //var bgBrush = new Image();

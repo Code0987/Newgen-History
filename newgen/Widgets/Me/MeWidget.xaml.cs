@@ -22,6 +22,9 @@ namespace Me
         [DllImport("User32.dll")]
         public static extern bool LockWorkStation();
 
+        [DllImport("user32.dll")]
+        public static extern int ExitWindowsEx(int uFlags, int dwReason);
+
         private DispatcherTimer tileAnimTimer;
 
         public MeWidget()
@@ -126,7 +129,7 @@ namespace Me
 
         private void Button_Logoff_Click(object sender, RoutedEventArgs e)
         {
-            try { LockWorkStation(); }
+            try { ExitWindowsEx(0, 0); }
             catch { }
         }
 
