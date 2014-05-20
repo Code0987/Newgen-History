@@ -1,0 +1,7 @@
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\obj\Release\Social.Base.csprojResolveAssemblyReference.cache
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\bin\Release\Social.Base.dll
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\bin\Release\Social.Base.pdb
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\bin\Release\Facebook.dll
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\bin\Release\Facebook.xml
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\obj\Release\Social.Base.dll
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\obj\Release\Social.Base.pdb

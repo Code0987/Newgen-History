@@ -1,0 +1,151 @@
+﻿<Window x:Class="Ftware.Apps.MetroShell.Windows.SettingsUI" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Core="clr-namespace:Ftware.Apps.MetroShell.Controls" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Unspecified" Height="450" Width="600" AllowsTransparency="True" Background="{x:Null}" Closing="Window_Closing" FontFamily="{StaticResource ContentFontFamily}" Loaded="Window_Loaded" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="Manual" SourceInitialized="Window_SourceInitialized" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid x:Name="Root" Margin="20">
+        <Border x:Name="Effects" Grid.RowSpan="1" Background="#FFDEDEDE">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" />
+            </Border.Effect>
+        </Border>
+        <Border x:Name="TouchSupportPin" Grid.Row="1" Height="20" Margin="0,-10,-10,0" Width="20" Background="#FFDEDEDE" CornerRadius="5" HorizontalAlignment="Right" MouseLeftButtonDown="TouchSupportPin_MouseLeftButtonDown" VerticalAlignment="Top">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="8" ShadowDepth="0" />
+            </Border.Effect>
+            <Path Data="M 0 0 L 10 10 M 0 10 L 10 0" HorizontalAlignment="Center" Stroke="Black" VerticalAlignment="Center" />
+        </Border>
+        <DockPanel TextOptions.TextFormattingMode="Display">
+            <Grid DockPanel.Dock="Top">
+                <TextBlock TextOptions.TextFormattingMode="Ideal" Margin="10" FontSize="36" FontWeight="Light" HorizontalAlignment="Left" Text="Settings" VerticalAlignment="Top" />
+            </Grid>
+            <Grid DockPanel.Dock="Bottom">
+                <TextBlock TextOptions.TextFormattingMode="Ideal" Margin="10" FontWeight="Light" Foreground="Gray" HorizontalAlignment="Left" Text="* Some changes will be applied after restarting application" VerticalAlignment="Center" />
+            </Grid>
+            <TabControl x:Name="Tabs" Margin="10" Background="Transparent" BorderThickness="0">
+                <TabItem Header="UI" Name="Tab_UI">
+                    <ScrollViewer HorizontalAlignment="Left" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <DockPanel>
+                            <StackPanel Margin="10" Orientation="Vertical">
+                                <TextBlock Margin="0,5,0,0" Text="Theme Color #1 (Tiles Background, etc...)" />
+                                <DockPanel Margin="30,0,0,0">
+                                    <Button Height="30" Margin="0,0,5,0" Width="125" Click="Button_ThemeColor1_Click" Content="Change" HorizontalAlignment="Left" Name="Button_ThemeColor1" />
+                                    <Rectangle Height="30" Margin="5,0,0,0" Width="30" HorizontalAlignment="Left" Name="Rect_ThemeColor1" />
+                                </DockPanel>
+
+                                <TextBlock Margin="0,5,0,0" Text="Theme Color #2 (Taskbar, Toolbars, etc...)" />
+                                <DockPanel Margin="30,0,0,0">
+                                    <Button Height="30" Margin="0,0,5,0" Width="125" Click="Button_ThemeColor2_Click" Content="Change" HorizontalAlignment="Left" Name="Button_ThemeColor2" />
+                                    <Rectangle Height="30" Margin="5,0,0,0" Width="30" HorizontalAlignment="Left" Name="Rect_ThemeColor2" />
+                                </DockPanel>
+
+                                <CheckBox Margin="0,5,0,0" Click="CheckBox_BgImage_Click" Content="'Tiles Screen' background" Name="CheckBox_BgImage" />
+                                <DockPanel Margin="30,0,0,0">
+                                    <Button Height="30" Margin="0,0,0,0" Width="125" Click="Button_TSBG_Click" Content="Select Image" HorizontalAlignment="Left" Name="Button_TSBG" />
+                                </DockPanel>
+
+                            </StackPanel>
+                        </DockPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Tiles" Name="Tab_Tiles">
+                    <ScrollViewer HorizontalAlignment="Left" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <DockPanel>
+                            <StackPanel Margin="10" Orientation="Vertical">
+                                <TextBlock Margin="0,0,0,0" Text="Tiles Size (*)" />
+                                <Slider Margin="30,5,0,0" Name="Slider_TilesSize" SmallChange="1" />
+
+                                <TextBlock Margin="0,5,0,0" Text="Tiles Spacing (*)" />
+                                <TextBox Margin="30,0,0,0" MinWidth="125" Name="TextBox_TilesSpacing" />
+
+                                <TextBlock Margin="0,5,0,0" Text="Tiles Lock" />
+                                <Button Height="30" Margin="30,0,0,0" Width="125" Click="Button_TilesLock_Click" Content="Lock" HorizontalAlignment="Left" Name="Button_TilesLock" />
+
+                            </StackPanel>
+                        </DockPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="TaskBar" Name="Tab_Taskbar">
+                    <ScrollViewer HorizontalAlignment="Left" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <DockPanel>
+                            <StackPanel Margin="10" Orientation="Vertical">
+                                <TextBlock Margin="0,5,0,0" Text="Programs you don't wish to be displayed on TaskBar" />
+                                <TextBlock Margin="30,5,0,0" FontStyle="Italic" Text="Select the items to exclude" />
+                                <TextBlock Margin="30,5,0,0" FontStyle="Italic" Text="Use Ctrl + Mouse Left Click to select multiple items." />
+                                <ListBox Height="150" Margin="30,0,0,0" Width="200" Background="#32000000" HorizontalAlignment="Left" Name="ListBox_ItemsToExclude" SelectionChanged="ListBox_ItemsToExclude_SelectionChanged" SelectionMode="Extended">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="20" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Height="20" Width="20" Source="{Binding Icon}" Stretch="Fill" />
+                                                <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="{Binding ProcessName}" VerticalAlignment="Center" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <Button Height="30" Margin="30,0,5,0" Width="200" Click="Button_AddPEXL_Click" Content="Add .exe to list" HorizontalAlignment="Left" Name="Button_AddPEXL" />
+                            </StackPanel>
+                        </DockPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="General" Name="Tab_General">
+                    <ScrollViewer HorizontalAlignment="Left" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <DockPanel>
+                            <StackPanel Margin="10" Orientation="Vertical">
+                                <CheckBox Margin="0,0,0,0" Click="CheckBox_AutoStart_Click" Content="Start with Windows" Name="CheckBox_AutoStart" />
+
+                                <TextBlock Margin="0,5,0,0" Text="Time format" />
+                                <DockPanel Margin="30,0,0,0">
+                                    <RadioButton Margin="0,0,20,0" Click="RadioButton_TimeFormat_Click" Content="12 Hrs." IsChecked="True" Name="RadioButton_TimeFormat_12h" />
+                                    <RadioButton Click="RadioButton_TimeFormat_Click" Content="24 Hrs." Name="RadioButton_TimeFormat_24h" />
+                                </DockPanel>
+
+                                <TextBlock Margin="0,5,0,0" Text="UserTile" />
+                                <TextBlock Margin="30,5,0,0" Text="Your Picture" />
+                                <DockPanel Margin="30,0,0,0">
+                                    <Button Height="30" Margin="0,0,5,0" Width="125" Click="Button_UserTile_Image_Click" Content="Change" HorizontalAlignment="Left" Name="Button_UserTile_Image" />
+                                    <Rectangle Height="30" Margin="5,0,0,0" Width="30" Fill="#ff486fb0" HorizontalAlignment="Left" Name="Rect_UserTile_Image" />
+                                </DockPanel>
+                                <TextBlock Margin="30,5,0,0" Text="Your Name (Use {UserName} for Account Name)" />
+                                <DockPanel Margin="30,0,0,0">
+                                    <TextBox Margin="0,0,0,0" MinWidth="125" Name="TextBox_UserTile_Text" Text="" />
+                                </DockPanel>
+
+                            </StackPanel>
+                        </DockPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem x:Name="Tab_About" Header="About" Loaded="TabItem_Loaded">
+                    <ScrollViewer HorizontalAlignment="Left" VerticalScrollBarVisibility="Hidden">
+                        <Grid Margin="10">
+                            <Image Margin="0,0,0,0" Width="64" HorizontalAlignment="Right" Opacity="1" Source="/Resources/MetroShell_logo.png" VerticalAlignment="Top" />
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="0,0,0,0" HorizontalAlignment="Left" FontSize="24" FontWeight="Light" Text="About" />
+                                <TextBlock x:Name="TextBlock_About" Margin="0,10,64,3" HorizontalAlignment="Left" />
+                                <TextBlock Margin="0,10,5,3" HorizontalAlignment="Left" MouseDown="SiteLink1_MouseDown" Name="SiteLink1" Text="http://ftware.blogspot.com/" TextWrapping="Wrap">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Cursor" Value="Hand" />
+                                            <Setter Property="Foreground" Value="#0066CC" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="TextDecorations" Value="Underline" />
+                                                    <Setter Property="Foreground" Value="#3399ff" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Margin="0,10,0,0" FontSize="24" FontWeight="Light" Text="Activation" />
+                                <TextBlock Margin="0,10,5,3" Name="TextBlock_About_ActivationMessage" HorizontalAlignment="Left" Text="Not activated. Please enter activation code below to activate. NOTE: Access to internet is required. And their is no difference in using trial license or not except that, it provides access to this application." TextWrapping="Wrap" />
+                                <StackPanel Margin="0,0,0,0">
+                                    <TextBox Margin="0,0,0,0" MinWidth="400" Name="TextBox_About_ActivationCode" Text="gXFxtDaOthVETUQ/910dwphFQMiAtolIiwGf8ewQTst1hGhPGfr859qsoBjyF0TdLtGxjQ+vd0YNa9FR+hLgGg==" />
+                                    <Button Margin="0,0,0,0" MinWidth="25" Name="Button_About_ActivationCode" Content="Activate" Click="Button_About_ActivationCode_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>

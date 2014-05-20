@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Calendar.CalendarWidget" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Properties="clr-namespace:Calendar.Properties" Foreground="White" MouseLeftButtonUp="UserControlMouseLeftButtonUp">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+            <GradientStop Color="#FFDB8514" Offset="0" />
+            <GradientStop Color="#FFE2A41F" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Click="RefreshItemClick" Header="{x:Static Properties:Resources.RefreshItem}" Name="RefreshItem" />
+            <MenuItem Click="OptionsItemClick" Header="{x:Static Properties:Resources.OptionsItem}" Name="OptionsItem" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <UserControl.Resources>
+        <Storyboard x:Key="TileAnim">
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" DecelerationRatio="0.7" Duration="0:0:0.18" From="0" To="-20" />
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" BeginTime="0:0:0.18" DecelerationRatio="0.7" Duration="0:0:0.14" To="0" />
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" BeginTime="0:0:0.32" DecelerationRatio="0.7" Duration="0:0:0.12" To="-10" />
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" BeginTime="0:0:0.44" DecelerationRatio="0.7" Duration="0:0:0.10" To="0" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid ClipToBounds="True">
+        <Grid Name="ForegroundGrid">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="ForegroundGridTranslation" />
+            </Grid.RenderTransform>
+            <StackPanel Margin="10,10,10,30">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left">
+                        <TextBlock FontSize="86" FontWeight="Light" Name="Day" Text="01" />
+                        <TextBlock Margin="0,-15,0,0" FontSize="14" Name="Month" Text="JANUARY" />
+                    </StackPanel>
+                    <StackPanel Margin="20,0,10,25" VerticalAlignment="Bottom">
+                        <TextBlock FontSize="14" Name="Title" TextTrimming="CharacterEllipsis" />
+                        <TextBlock FontSize="14" Name="Location" TextTrimming="CharacterEllipsis" Visibility="Collapsed" />
+                        <TextBlock FontSize="14" Name="Description" TextTrimming="CharacterEllipsis" Visibility="Collapsed" />
+                        <TextBlock FontSize="14" Name="Time" TextWrapping="Wrap" />
+                        <TextBlock Margin="10" FontSize="16" Foreground="White" HorizontalAlignment="Center" Name="Tip" Text="{x:Static Properties:Resources.Tip}" TextWrapping="Wrap" VerticalAlignment="Center" Visibility="Collapsed" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+            <TextBlock Margin="10,0,0,10" FontSize="14" Foreground="White" HorizontalAlignment="Left" Text="Calendar" VerticalAlignment="Bottom" />
+        </Grid>
+    </Grid>
+</UserControl>

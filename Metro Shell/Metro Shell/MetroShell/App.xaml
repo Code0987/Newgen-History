@@ -1,0 +1,10 @@
+﻿<Application x:Class="Ftware.Apps.MetroShell.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" DispatcherUnhandledException="App_DispatcherUnhandledException" Exit="App_Exit" ShutdownMode="OnLastWindowClose" Startup="App_Startup">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MetroShell.Base;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

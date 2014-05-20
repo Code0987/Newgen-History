@@ -1,0 +1,5 @@
+D:\Projects\Apps\Metro Shell\Build\Cache\Social.Base.dll
+D:\Projects\Apps\Metro Shell\Build\Cache\Social.Base.pdb
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\obj\Debug\Social.Base.csprojResolveAssemblyReference.cache
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\obj\Debug\Social.Base.dll
+D:\Projects\Apps\Metro Shell\Metro Shell\Social.Base\obj\Debug\Social.Base.pdb

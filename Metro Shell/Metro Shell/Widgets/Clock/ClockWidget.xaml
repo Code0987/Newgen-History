@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Clock.ClockWidget" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Properties="clr-namespace:Clock.Properties" FontFamily="/MetroShell.Base;component/Fonts/#Segoe WP" FontWeight="Light" MouseLeftButtonUp="UserControlMouseLeftButtonUp">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">
+            <GradientStop Color="Green" Offset="0" />
+            <GradientStop Color="#007200" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Click="OptionsItemClick" Header="{x:Static Properties:Resources.OptionsItem}" Name="OptionsItem" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+            <Image Margin="0,24,15,0" Width="12" Name="BatteryIcon" Source="Resources/batt10.png" />
+            <TextBlock FontSize="56" Foreground="White" Name="Hours" Text="02" />
+            <TextBlock FontSize="56" Foreground="White" Text=":" />
+            <TextBlock FontSize="56" Foreground="White" Name="Minutes" Text="54" />
+            <TextBlock Margin="0,0,0,8" FontSize="24" Foreground="White" Name="AmPm" Text="Am" VerticalAlignment="Bottom" />
+            <StackPanel Margin="15,0,0,0" VerticalAlignment="Center">
+                <TextBlock FontSize="24" Foreground="White" Name="Day" Text="Thursday" />
+                <TextBlock FontSize="20" Foreground="White" Name="Date" Text="June 01" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

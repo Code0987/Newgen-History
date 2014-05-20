@@ -1,0 +1,30 @@
+<SmartAssemblyProject ProjectId="{eb86f22d-0e1c-469b-9ef2-933970b27569}" Version="2.0">
+    <MainAssemblyFileName>..\..\Cache\MetroShell.Base.dll</MainAssemblyFileName>
+    <Configuration Name="Release">
+        <ApplicationName />
+        <Destination DestinationFileName="..\..\Releases\bin\MetroShell.Base.dll" />
+        <Assemblies>
+            <Assembly AssemblyName="MetroShell.Base, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression Compress="0" />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation />
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                    <StringsEncoding />
+                    <ResourcesPruning />
+                </Merging>
+            </Assembly>
+        </Assemblies>
+        <Options>
+            <Obfuscation FieldsNameMangling="2" NameMangling="2" />
+            <ExceptionReporting Template="res:{SmartExceptions}.1033.dll" />
+            <FeatureUsageReporting Template="res:SmartUsageWithUIConsentFirstRun1033.dll" />
+            <StrongNameSigning />
+            <OtherProtections SuppressIldasm="1" />
+            <StringsEncoding Compress="1" Encode="1" UseCache="1" UseImprovedEncoding="1" />
+            <OtherOptimizations />
+            <Debugging />
+        </Options>
+    </Configuration>
+</SmartAssemblyProject>

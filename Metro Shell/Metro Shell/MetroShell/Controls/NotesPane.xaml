@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Ftware.Apps.MetroShell.Controls.NotesPane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Height="80"
+             Loaded="UserControl_Loaded"
+             MouseEnter="UserControl_MouseEnter"
+             MouseLeave="UserControl_MouseLeave"
+             mc:Ignorable="d">
+    <Grid>
+        <Image Width="48"
+               Height="48"
+               Margin="0,-24,-24,0"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Source="/MetroShell;component/Resources/notes.png"
+               Stretch="Fill" />
+
+        <TextBox Name="TextBox_Note"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 AllowDrop="True"
+                 AutoWordSelection="True"
+                 FontSize="13.5"
+                 FontWeight="SemiBold"
+                 Foreground="#FF222222"
+                 HorizontalScrollBarVisibility="Auto"
+                 IsTabStop="True"
+                 SelectionBrush="#FF5C5C5C"
+                 TextChanged="TextBox_Note_TextChanged"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto" />
+    </Grid>
+</UserControl>

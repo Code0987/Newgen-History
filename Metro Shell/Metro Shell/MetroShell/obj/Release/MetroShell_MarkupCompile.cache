@@ -1,0 +1,20 @@
+﻿MetroShell
+
+
+winexe
+C#
+.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Release\
+Ftware.Apps.MetroShell
+none
+false
+
+
+17-174071095
+
+35-827542391
+27-960122752
+App.xaml;Controls\AddressBarPopup.xaml;Controls\DateTimeView.xaml;Controls\NotesPane.xaml;Controls\DWMPreviewPopup.xaml;Windows\ExitOptionsUI.xaml;Windows\WaitWindow.xaml;Controls\StartBarItem.xaml;Controls\MusicPlayer.xaml;Controls\TilesToolbarItem.xaml;Controls\ToolbarItem.xaml;Controls\WidgetControl.xaml;Windows\SettingsUI.xaml;Windows\TilesToolBar.xaml;Windows\StartSystem.xaml;Themes\Generic.xaml;Windows\TilesScreen.xaml;
+
+True
+

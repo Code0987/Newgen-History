@@ -1,0 +1,6 @@
+D:\Projects\Apps\Metro Shell\Build\Cache\MetroShell.Base.dll
+D:\Projects\Apps\Metro Shell\Build\Cache\MetroShell.Base.pdb
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell.Base\obj\Debug\MetroShell.Base.csprojResolveAssemblyReference.cache
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell.Base\obj\Debug\MetroShell.Base.g.resources
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell.Base\obj\Debug\MetroShell.Base.dll
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell.Base\obj\Debug\MetroShell.Base.pdb

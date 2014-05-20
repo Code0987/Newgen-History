@@ -1,0 +1,45 @@
+D:\Projects\Apps\Metro Shell\Build\Cache\MetroShell.exe.config
+D:\Projects\Apps\Metro Shell\Build\Cache\MetroShell.exe
+D:\Projects\Apps\Metro Shell\Build\Cache\MetroShell.pdb
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\MetroShell.csprojResolveAssemblyReference.cache
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Interop.WMPLib.dll
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\MetroShell.csproj.ResolveComReference.cache
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\App.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\AddressBarPopup.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\DateTimeView.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\NotesPane.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\DWMPreviewPopup.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\WaitWindow.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\StartBarItem.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\MusicPlayer.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\TilesToolbarItem.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\ToolbarItem.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\WidgetControl.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\App.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\AddressBarPopup.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\DateTimeView.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\NotesPane.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\DWMPreviewPopup.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\ExitOptionsUI.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\WaitWindow.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\StartBarItem.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\MusicPlayer.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\TilesToolbarItem.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\ToolbarItem.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Controls\WidgetControl.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\SettingsUI.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\TilesToolBar.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\StartSystem.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\TilesScreen.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\MetroShell_MarkupCompile.cache
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\MetroShell_MarkupCompile.lref
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\ExitOptionsUI.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\SettingsUI.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\TilesToolBar.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\StartSystem.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Themes\Generic.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\Windows\TilesScreen.baml
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\MetroShell.g.resources
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\MetroShell.exe
+D:\Projects\Apps\Metro Shell\Metro Shell\MetroShell\obj\Debug\MetroShell.pdb

@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Store.WidgetControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Properties="clr-namespace:Store.Properties" RenderOptions.BitmapScalingMode="HighQuality" MouseLeftButtonUp="UserControlMouseLeftButtonUp" mc:Ignorable="d" d:DesignHeight="180" d:DesignWidth="180">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="#FFE86522" Offset="0" />
+            <GradientStop Color="#FFFF965F" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <Grid>
+        <Image Margin="25" HorizontalAlignment="Center" Name="image1" Source="/Store;component/Images/store_icon.PNG" Stretch="Uniform" VerticalAlignment="Center" />
+        <TextBlock Margin="10,0,0,10" FontSize="14" Foreground="White" HorizontalAlignment="Left" Text="Store" VerticalAlignment="Bottom" />
+    </Grid>
+</UserControl>

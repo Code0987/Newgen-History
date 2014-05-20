@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Twitter.TwitterWidget" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Properties="clr-namespace:Twitter.Properties">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">
+            <GradientStop Color="#FF035096" Offset="0" />
+            <GradientStop Color="#FF05417E" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Click="RefreshItemClick" Header="{x:Static Properties:Resources.RefreshItem}" Name="RefreshItem" />
+            <MenuItem Click="OptionsItemClick" Header="{x:Static Properties:Resources.OptionsItem}" Name="OptionsItem" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <UserControl.Resources>
+        <Storyboard x:Key="TileAnim">
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" DecelerationRatio="0.7" Duration="0:0:0.18" From="0" To="-20" />
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" BeginTime="0:0:0.18" DecelerationRatio="0.7" Duration="0:0:0.14" To="0" />
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" BeginTime="0:0:0.32" DecelerationRatio="0.7" Duration="0:0:0.12" To="-10" />
+            <DoubleAnimation Storyboard.TargetName="ForegroundGridTranslation" Storyboard.TargetProperty="Y" AccelerationRatio="0.3" BeginTime="0:0:0.44" DecelerationRatio="0.7" Duration="0:0:0.10" To="0" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid ClipToBounds="True">
+        <Grid Name="ForegroundGrid">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="ForegroundGridTranslation" />
+            </Grid.RenderTransform>
+            <DockPanel Margin="10,10,10,20">
+                <Image DockPanel.Dock="Left" Margin="0,18,0,0" Width="100" Name="UserPic" VerticalAlignment="Top" />
+                <StackPanel Margin="10" Cursor="Hand" MouseLeftButtonUp="StackPanelMouseLeftButtonUp" VerticalAlignment="Top">
+                    <TextBlock FontSize="24" Foreground="White" Name="Username" TextTrimming="CharacterEllipsis" />
+                    <TextBlock FontSize="14" Foreground="White" MaxHeight="90" Name="Tweet" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
+                </StackPanel>
+            </DockPanel>
+            <TextBlock Margin="10" FontSize="14" Foreground="White" HorizontalAlignment="Center" Name="Tip" Text="{x:Static Properties:Resources.Tip}" TextWrapping="Wrap" VerticalAlignment="Center" />
+            <TextBlock Margin="0,0,10,10" FontSize="14" Foreground="White" HorizontalAlignment="Right" Name="UnreadCount" Text="0" VerticalAlignment="Bottom" />
+            <TextBlock Margin="10" FontSize="14" Foreground="White" HorizontalAlignment="Left" Text="Twitter" VerticalAlignment="Bottom" />
+        </Grid>
+    </Grid>
+</UserControl>
